@@ -20,59 +20,89 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
+      <div class="container">
         <a class="navbar-brand" href="#">
-        <img
+          <img
             src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
             alt=""
             width="30"
             height="24"
             class="d-inline-block align-text-top"
-        />
+          />
           Jesús de la Torre Jiménez
         </a>
         <ul class="nav">
-          <li class="nav-item"><a href="index.html" class="nav-link active">Index</a></li>
-          <li class="nav-item"><a href="interaccion.html" class="nav-link active">Interaccion</a></li>
+          <li class="nav-item">
+            <a href="index.html" class="nav-link active">Index</a>
+          </li>
+          <li class="nav-item">
+            <a href="interaccion.html" class="nav-link active">Interaccion</a>
+          </li>
         </ul>
+      </div>
     </nav>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Empresa que lo desarrolla</th>
-          <th scope="col">Motor de renderizado</th>
-          <th scope="col">Basado en Chromium</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Chrome</td>
-          <td>Blink</td>
-          <td>Si</td>
-        </tr>
-        <tr>
-          <td>Firefox</td>
-          <td>Gecko</td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>Safari</td>
-          <td>WebKit</td>
-          <td>No</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="card-group">
-      <div class="card">
-        <div class="card-body">
-          En la actualidad existen 3 motores de renderizado más usados en los navegadores. El motor Blink desarrollado por Google, el motor Gecko de Firefox y Webkit de Apple. La mayoria de navegadores utiliza el motor de renderizado de Blink. Para entender porque es este el caso, nos remontamos a los inicios del procesamiento gráfico de las páginas web. Empezó con el proyecto Gecko de Mozilla y el motor open source KHTML en 1998. En 2001 Apple hizo un fork del repositorio KHTML para añadir sus propias mejoras. En 2013 Google hizo un fork del motor de Webkit de Apple creando su propio motor Blink. Por ello en la actualidad tenemos 3 motores principales con funcionalidad muy parecida pero con algunas diferencias que provoca que los desarrolladores tengan que comprobar la funcionalidad con los 3.
+    <div class="container mt-4">
+      <!-- Fila para la tabla -->
+      <div class="row">
+        <div class="col-12">
+          <!-- table-responsive evita el scroll horizontal en móviles -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Empresa que lo desarrolla</th>
+                  <th scope="col">Motor de renderizado</th>
+                  <th scope="col">Basado en Chromium</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Chrome</td>
+                  <td>Blink</td>
+                  <td>Si</td>
+                </tr>
+                <tr>
+                  <td>Firefox</td>
+                  <td>Gecko</td>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <td>Safari</td>
+                  <td>WebKit</td>
+                  <td>No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      <div class="col-md-6">
-          <div class="card">
+      <!-- Fila para las tarjetas -->
+      <div class="row">
+        <!-- col-12 para móvil, col-md-4 para escritorio (3 columnas) -->
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              En la actualidad existen 3 motores de renderizado más usados en
+              los navegadores. El motor Blink desarrollado por Google, el motor
+              Gecko de Firefox y Webkit de Apple. La mayoria de navegadores
+              utiliza el motor de renderizado de Blink. Para entender porque es
+              este el caso, nos remontamos a los inicios del procesamiento
+              gráfico de las páginas web. Empezó con el proyecto Gecko de
+              Mozilla y el motor open source KHTML en 1998. En 2001 Apple hizo
+              un fork del repositorio KHTML para añadir sus propias mejoras. En
+              2013 Google hizo un fork del motor de Webkit de Apple creando su
+              propio motor Blink. Por ello en la actualidad tenemos 3 motores
+              principales con funcionalidad muy parecida pero con algunas
+              diferencias que provoca que los desarrolladores tengan que
+              comprobar la funcionalidad con los 3.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title">Compatibilidad (Can I Use)</h5>
               <p class="card-text">
@@ -83,13 +113,23 @@
                   >caniuse.com/accent-color</a
                 >. Fecha de consulta: 29 de septiembre de 2026.
               </p>
-      </div>
+            </div>
+          </div>
+        </div>
 
-    <div class="card">
-      <div class="card-body">
-         El primer navegador a probar sería el más usado mundialmente Chrome, con este verificaremos cómo se visualiza la página en la mayoria de usuarios. Siguientemente probaria en Safari y Firefox para comprobar que funciona con todos los motores actuales. Además de comprobar el formato de visualización del móvil. 
+        <div class="col-12 col-md-4 mb-3">
+          <div class="card h-100">
+            <div class="card-body">
+              El primer navegador a probar sería el más usado mundialmente
+              Chrome, con este verificaremos cómo se visualiza la página en la
+              mayoria de usuarios. Siguientemente probaria en Safari y Firefox
+              para comprobar que funciona con todos los motores actuales. Además
+              de comprobar el formato de visualización del móvil.
+            </div>
+          </div>
+        </div>
       </div>
-    </div> 
+    </div>
 
     <!-- JS de Bootstrap (navbar que se pliega, modales, dropdowns...). Al final del body -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
