@@ -3,27 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Título de la página</title>
+    <title>Interacción con JavaScript</title>
 
     <!-- CSS de Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <!-- Iconos de Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <!-- Tu CSS, SIEMPRE después del de Bootstrap -->
     <link href="css/estilos.css" rel="stylesheet" />
   </head>
   <body>
-    <header></header>
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img
+            src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
+            alt=""
+            width="30"
+            height="24"
+            class="d-inline-block align-text-top"
+          />
+          Jesús de la Torre Jiménez
+        </a>
+        <ul class="nav">
+          <li class="nav-item">
+            <a href="index.html" class="nav-link">Index</a>
+          </li>
+          <li class="nav-item">
+            <a href="interaccion.html" class="nav-link active">Interaccion</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-    <!-- Aquí va tu contenido -->
+    <div class="container mt-4">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Compatibilidad (Can I Use)</h5>
+              <p class="card-text">
+                Ejemplo real de diferencia de compatibilidad: la propiedad CSS
+                <code>accent-color</code>. Funciona en Chrome 93+, Firefox 92+ y
+                Safari 15.4+, pero falla en versiones antiguas. Enlace:
+                <a href="https://caniuse.com/accent-color" target="_blank"
+                  >caniuse.com/accent-color</a
+                >. Fecha de consulta: 29 de septiembre de 2026.
+              </p>
+            </div>
+          </div>
+        </div>
 
-    <!-- JS de Bootstrap (navbar que se pliega, modales, dropdowns...). Al final del body -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Panel de Interacción con JavaScript</h5>
+              <p>
+                <button class="btn btn-primary" onclick="saludar()">
+                  Saludar
+                </button>
+                <button class="btn btn-danger" onclick="simularError()">
+                  Simular un error
+                </button>
+                <button class="btn btn-secondary" onclick="queNavegadorSoy()">
+                  ¿Qué navegador soy?
+                </button>
+              </p>
+
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <strong>Saludar:</strong> Muestra un mensaje emergente (alert)
+                  con tu nombre.
+                </li>
+                <li class="list-group-item">
+                  <strong>Simular un error:</strong> Escribe un mensaje de error
+                  en la consola del desarrollador (console.error).
+                </li>
+                <li class="list-group-item">
+                  <strong>¿Qué navegador soy?:</strong> Muestra el valor de
+                  navigator.userAgent en un alert y en la consola.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Tu JavaScript externo -->
+    <script src="js/app.js"></script>
   </body>
 </html>
