@@ -40,17 +40,91 @@
     <div class="container mt-4">
       <div class="row">
         <div class="col-md-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Compatibilidad (Can I Use)</h5>
-              <p class="card-text">
-                Ejemplo real de diferencia de compatibilidad: la propiedad CSS
-                <code>accent-color</code>. Funciona en Chrome 93+, Firefox 92+ y
-                Safari 15.4+, pero falla en versiones antiguas. Enlace:
-                <a href="https://caniuse.com/accent-color" target="_blank"
-                  >caniuse.com/accent-color</a
-                >. Fecha de consulta: 29 de septiembre de 2026.
-              </p>
+          <div class="accordion" id="accordionExplicacion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingUno">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseUno"
+                  aria-expanded="true"
+                  aria-controls="collapseUno"
+                >
+                  ¿Qué es este componente?
+                </button>
+              </h2>
+              <div
+                id="collapseUno"
+                class="accordion-collapse collapse show"
+                aria-labelledby="headingUno"
+                data-bs-parent="#accordionExplicacion"
+              >
+                <div class="accordion-body">
+                  El acordeón es un componente de Bootstrap que permite mostrar
+                  y ocultar contenido de forma colapsable. Es ideal para
+                  organizar información en un espacio reducido, mostrando solo
+                  los títulos y desplegando el detalle al hacer clic.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingDos">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseDos"
+                  aria-expanded="false"
+                  aria-controls="collapseDos"
+                >
+                  ¿Cómo funciona internamente?
+                </button>
+              </h2>
+              <div
+                id="collapseDos"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingDos"
+                data-bs-parent="#accordionExplicacion"
+              >
+                <div class="accordion-body">
+                  Utiliza atributos de datos como
+                  <code>data-bs-toggle="collapse"</code> en el botón y
+                  <code>data-bs-target="#id"</code> para vincularlo con el
+                  panel. El atributo <code>data-bs-parent</code> asegura que al
+                  abrir un panel, los demás se cierren automáticamente.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTres">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseTres"
+                  aria-expanded="false"
+                  aria-controls="collapseTres"
+                >
+                  Estructura de clases necesaria
+                </button>
+              </h2>
+              <div
+                id="collapseTres"
+                class="accordion-collapse collapse"
+                aria-labelledby="headingTres"
+                data-bs-parent="#accordionExplicacion"
+              >
+                <div class="accordion-body">
+                  Requiere un contenedor con la clase <code>.accordion</code>.
+                  Dentro, cada sección es un <code>.accordion-item</code> que
+                  contiene un <code>.accordion-header</code> (con el botón) y un
+                  <code>.accordion-collapse</code> que envuelve al
+                  <code>.accordion-body</code> con el texto.
+                </div>
+              </div>
             </div>
           </div>
         </div>
