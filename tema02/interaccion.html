@@ -15,7 +15,8 @@
   </head>
   <body>
     <nav class="navbar navbar-light bg-light">
-      <div class="container-fluid">
+      <!-- Cambiado a .container para alinear con el resto del contenido y evitar scroll horizontal -->
+      <div class="container">
         <a class="navbar-brand" href="#">
           <img
             src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
@@ -39,7 +40,8 @@
 
     <div class="container mt-4">
       <div class="row">
-        <div class="col-md-6">
+        <!-- col-12 para móvil, col-md-6 para escritorio. mb-3 para espaciado al apilarse en móvil -->
+        <div class="col-12 col-md-6 mb-3">
           <div class="accordion" id="accordionExplicacion">
             <div class="accordion-item">
               <h2 class="accordion-header" id="headingUno">
@@ -129,8 +131,9 @@
           </div>
         </div>
 
-        <div class="col-md-6">
-          <div class="card">
+        <!-- col-12 para móvil, col-md-6 para escritorio. mb-3 para espaciado al apilarse en móvil -->
+        <div class="col-12 col-md-6 mb-3">
+          <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title">Panel de Interacción con JavaScript</h5>
               <p>
