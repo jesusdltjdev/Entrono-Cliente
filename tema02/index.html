@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Título de la página</title>
-
-    <!-- CSS de Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -14,7 +12,6 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
       rel="stylesheet"
     />
-    <!-- Tu CSS, SIEMPRE después del de Bootstrap -->
     <link href="css/estilos.css" rel="stylesheet" />
   </head>
   <body>
@@ -42,33 +39,54 @@
     </nav>
 
     <div class="container mt-4">
-      <!-- Fila para la tabla -->
       <div class="row">
         <div class="col-12">
           <div class="table-responsive">
             <table class="table">
               <thead>
                 <tr>
+                  <th scope="col">Navegador</th>
                   <th scope="col">Empresa que lo desarrolla</th>
                   <th scope="col">Motor de renderizado</th>
+                  <th scope="col">Motor de JavaScript</th>
                   <th scope="col">Basado en Chromium</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Chrome</td>
+                  <td>Google</td>
                   <td>Blink</td>
-                  <td>Si</td>
+                  <td>V8</td>
+                  <td>Sí</td>
                 </tr>
                 <tr>
                   <td>Firefox</td>
+                  <td>Mozilla</td>
                   <td>Gecko</td>
+                  <td>SpiderMonkey</td>
                   <td>No</td>
                 </tr>
                 <tr>
                   <td>Safari</td>
+                  <td>Apple</td>
                   <td>WebKit</td>
+                  <td>JavaScriptCore</td>
                   <td>No</td>
+                </tr>
+                <tr>
+                  <td>Edge</td>
+                  <td>Microsoft</td>
+                  <td>Blink</td>
+                  <td>V8</td>
+                  <td>Sí</td>
+                </tr>
+                <tr>
+                  <td>Opera</td>
+                  <td>Opera Software</td>
+                  <td>Blink</td>
+                  <td>V8</td>
+                  <td>Sí</td>
                 </tr>
               </tbody>
             </table>
