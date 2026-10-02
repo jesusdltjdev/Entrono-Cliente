@@ -1,6 +1,6 @@
 function saludar() {
   console.log("Se ha pulsado el botón saludar");
-  alert("HOLA, esta es la prueba de modales en JS");
+  alert("Hola Jesús de la Torre, esta es la prueba de modales en JS");
 }
 
 function simularError() {
