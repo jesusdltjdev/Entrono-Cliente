@@ -52,7 +52,6 @@
          EJERCICIO 1 · La card modelo
          ============================================================ -->
       <section class="card mb-4 shadow-sm">
-        <!-- 1) Título del ejercicio -->
         <div class="card-header d-flex align-items-center gap-2">
           <span class="badge text-bg-primary">Ejercicio 1</span>
           <h2 class="h5 mb-0">Variables y typeof</h2>
@@ -136,7 +135,6 @@ function ejercicio1() {
             </table>
           </div>
 
-          <!-- 4) Tu explicación -->
           <p class="small mb-0">
             <strong>El caso de null:</strong> En el caso de null en vez de salir
             un tipo "Null" nos sale de tipo object, esto fue un fallo que nunca
@@ -144,8 +142,6 @@ function ejercicio1() {
           </p>
         </div>
 
-        <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
-              Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
           <button type="button" class="btn btn-primary" onclick="ejercicio1()">
             <i class="bi bi-play-fill"></i> Ejecutar ejercicio 1
@@ -157,7 +153,7 @@ function ejercicio1() {
       </section>
 
 
-      <!--Ejercicio 2-->>
+      <!--Ejercicio 2-->
       <section class="card mb-4 shadow-sm">
         <div class="card-header d-flex align-items-center gap-2">
           <span class="badge text-bg-primary">Ejercicio 2</span>
@@ -167,11 +163,11 @@ function ejercicio1() {
         <div class="card-body">
           <pre
             class="bg-dark text-light p-3 rounded small mb-4"
-          ><code>function ejercicio1() {
+          ><code>
 function ejercicio2() {
   console.log("--- Ejercicio 2 · Conversiones explícitas ---");
 
-  // Ejemplo: una conversión, tu predicción y el resultado con su tipo
+  // Conversión, predicción y el resultado con su tipo
   const a = String(123); // espero "123"
   console.log("String(123) →", a, typeof a);
 
@@ -196,7 +192,7 @@ function ejercicio2() {
   const h = Boolean(""); 
   console.log('Boolean("") →', h, typeof h);
 }
-}</code></pre>
+</code></pre>
           <div class="table-responsive">
             <table class="table table-sm table-striped align-middle mb-2">
               <thead class="table-primary">
@@ -281,17 +277,17 @@ function ejercicio2() {
           ><code>function ejercicio3() {
   console.log("--- Ejercicio 3 · Coerción y comparaciones ---");
 
-  // Ejemplo: una expresión que mezcla tipos
-  console.log('"5" - 2 →', "5" - 2); // espero 3
+  // Una expresión que mezcla tipos
+  console.log('"5" - 2 →', "5" - 2);
 
-  // Cinco expresiones más que mezclen tipos (al menos dos inventadas)
+  // Cinco expresiones más que mezclen tipos
   console.log('"5" + 2 →', "5" + 2);
   console.log("true + 1 →", true + 1);
   console.log("null + 5 →", null + 5);
   console.log("undefined + 1 →", undefined + 1);
   console.log('"10" * "2" →', "10" * "2");
 
-  // Ejemplo: la misma pareja comparada con == y con ===
+  // La misma pareja comparada con == y con ===
   console.log('5 == "5" →', 5 == "5");
   console.log('5 === "5" →', 5 === "5");
 
@@ -428,12 +424,7 @@ function ejercicio2() {
     " horas.";
   console.log("Ficha concatenada con +:", fichaConMas);
 
-  console.log(
-    "¿Las dos fichas son estrictamente iguales (===)?",
-    ficha === fichaConMas,
-  );
-
-  // Recuerda: el error de dar otro valor a una const se provoca en la consola del navegador, no aquí.
+  console.log(ficha === fichaConMas);
 }
 </code></pre>
 
