@@ -1,5 +1,5 @@
 /*
-  Tarea 3 · DWEC · [Tu nombre y apellidos]
+  Tarea 3 · DWEC · Jesús de la Torre Jiménez
   Variables, tipos y conversiones.
 
   Cómo usar esta plantilla:
@@ -29,16 +29,9 @@ function ejercicio1() {
   console.log("modeloCoche =", modeloCoche, "→", typeof modeloCoche);
   console.log("dni =", dni, "→", typeof dni);
   console.log("nPersonas =", nPersonas, "→", typeof nPersonas);
-
-  // TODO: declara una variable de cada tipo que falta: string, boolean, null, undefined y bigint (como 10n).
-  //       const si no va a cambiar; let para al menos una a la que des valor más tarde.
-
-  // TODO: muestra en la consola el valor y el typeof de cada una, como en el ejemplo.
-  // TODO: da valor a tu variable let y vuelve a mostrar su typeof.
 }
 
 // Ejercicio 2 · Conversiones explícitas
-// Escribe el comentario «espero …» ANTES de ejecutar. Si fallas, no lo cambies: márcalo en la tabla de la página.
 function ejercicio2() {
   console.log("--- Ejercicio 2 · Conversiones explícitas ---");
 
@@ -98,18 +91,32 @@ function ejercicio4() {
   console.log("--- Ejercicio 4 · Tu ficha con plantillas de cadena ---");
 
   // Tus datos, con const
-  const nombre = "[Tu nombre]";
-  // TODO: ciclo, curso y una afición, también con const.
+  const nombre = "Jesus";
+  const ciclo = "Desarrollo de Aplicaciones Web";
+  const curso = "2º";
+  const aficion = "correr";
 
   // Un dato que cambia, con let
-  // TODO: por ejemplo, las horas que has estudiado esta semana. Después súmale algo con +=.
+  let horasEstudio = 2;
+  horasEstudio += 5;
 
   // La ficha con plantilla de cadena: backticks (`) y ${ }
-  const ficha = `Soy ${nombre}.`;
-  // TODO: completa la ficha con todos tus datos y muéstrala con alert() y en la consola.
+  const ficha = `Soy ${nombre}. Estudio ${ciclo} en ${curso} curso. Mi afición es ${aficion} y esta semana he estudiado ${horasEstudio} horas.`;
+  alert(ficha);
+  console.log("Ficha con plantilla:", ficha);
 
-  // TODO: escribe la misma ficha concatenando con + en una constante fichaConMas y muéstrala en la consola.
-  // TODO: compara las dos con === y muestra el resultado en la consola: tiene que salir true.
-
-  // Recuerda: el error de dar otro valor a una const se provoca en la consola del navegador, no aquí.
+  const fichaConMas =
+    "Soy " +
+    nombre +
+    ". Estudio " +
+    ciclo +
+    " en " +
+    curso +
+    " curso. Mi afición es " +
+    aficion +
+    " y esta semana he estudiado " +
+    horasEstudio +
+    " horas.";
+  console.log("Ficha concatenada con +:", fichaConMas);
+  console.log(ficha === fichaConMas);
 }

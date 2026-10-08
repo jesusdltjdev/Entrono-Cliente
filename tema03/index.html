@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Cambia [Tu nombre] por tu nombre -->
     <title>
       Variables, tipos y conversiones · Jesús Enrique de la Torre Jiménez
     </title>
@@ -20,14 +19,8 @@
     />
   </head>
   <body>
-    <!--
-    PLANTILLA DE LA TAREA 3
-    · Todo lo que va entre [corchetes] es un hueco: sustitúyelo por lo tuyo.
-    · La card del ejercicio 1 es el modelo. Las de los ejercicios 2, 3 y 4 las haces tú copiándola (mira el final).
-    · El JavaScript va en js/app.js, dentro de la función de cada ejercicio.
-  -->
 
-    <!-- NAVBAR con tu nombre -->
+    <!-- NAVBAR -->
     <nav class="navbar bg-primary" data-bs-theme="dark">
       <div class="container">
         <span class="navbar-brand"
@@ -66,8 +59,6 @@
         </div>
 
         <div class="card-body">
-          <!-- 2) El código: cuando termines, copia aquí tu función ejercicio1() de js/app.js.
-                Si tu código lleva los signos < o >, escríbelos como &lt; y &gt; -->
           <pre class="bg-dark text-light p-3 rounded small mb-4"><code>
 function ejercicio1() {
   console.log("--- Ejercicio 1 · Variables y typeof ---");
@@ -85,10 +76,6 @@ function ejercicio1() {
   console.log("dni =", dni, "→", typeof dni);
   console.log("nPersonas =", nPersonas, "→", typeof nPersonas);
 }</code></pre>
-
-          <!-- 3) La tabla «Espero / Sale», rellenada a mano.
-                Una fila por variable. Si te equivocas, añade en la columna «Sale» el badge:
-                <span class="badge text-bg-danger">Fallé</span> -->
           <div class="table-responsive">
             <table class="table table-sm table-striped align-middle mb-2">
               <thead class="table-primary">
@@ -169,29 +156,15 @@ function ejercicio1() {
         </div>
       </section>
 
-      <!-- ============================================================
-         EJERCICIOS 2, 3 Y 4 · Los haces tú
-         Copia la card del ejercicio 1 entera (desde <section> hasta </section>), pégala aquí debajo
-         y cambia en cada copia:
-           · el número y el título;
-           · el código del bloque <pre><code>;
-           · las columnas de la tabla:
-               Ejercicio 2 → Conversión / Espero / Sale
-               Ejercicio 3 → Expresión / Espero / Sale, y tu frase sobre cuándo manda la cadena y cuándo el número
-               Ejercicio 4 → tu ficha, y el error de la const dentro de un <div class="alert alert-danger">
-           · el botón: onclick="ejercicio2()", onclick="ejercicio3()"…
-         ============================================================ -->
 
+      <!--Ejercicio 2-->>
       <section class="card mb-4 shadow-sm">
-        <!-- 1) Título del ejercicio -->
         <div class="card-header d-flex align-items-center gap-2">
           <span class="badge text-bg-primary">Ejercicio 2</span>
           <h2 class="h5 mb-0">Conversiones explícitas</h2>
         </div>
 
         <div class="card-body">
-          <!-- 2) El código: cuando termines, copia aquí tu función ejercicio1() de js/app.js.
-                Si tu código lleva los signos < o >, escríbelos como &lt; y &gt; -->
           <pre
             class="bg-dark text-light p-3 rounded small mb-4"
           ><code>function ejercicio1() {
@@ -224,10 +197,6 @@ function ejercicio2() {
   console.log('Boolean("") →', h, typeof h);
 }
 }</code></pre>
-
-          <!-- 3) La tabla «Espero / Sale», rellenada a mano.
-                Una fila por variable. Si te equivocas, añade en la columna «Sale» el badge:
-                <span class="badge text-bg-danger">Fallé</span> -->
           <div class="table-responsive">
             <table class="table table-sm table-striped align-middle mb-2">
               <thead class="table-primary">
@@ -288,8 +257,6 @@ function ejercicio2() {
             </table>
           </div>
 
-        <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
-              Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
           <button type="button" class="btn btn-primary" onclick="ejercicio2()">
             <i class="bi bi-play-fill"></i> Ejecutar ejercicio 2
@@ -300,16 +267,15 @@ function ejercicio2() {
         </div>
       </section>
 
+      <!--Ejercicio3-->
       <section class="card mb-4 shadow-sm">
-        <!-- 1) Título del ejercicio -->
+
         <div class="card-header d-flex align-items-center gap-2">
           <span class="badge text-bg-primary">Ejercicio 3</span>
-          <h2 class="h5 mb-0">Variables y typeof</h2>
+          <h2 class="h5 mb-0">Coerción y comparaciones</h2>
         </div>
 
         <div class="card-body">
-          <!-- 2) El código: cuando termines, copia aquí tu función ejercicio1() de js/app.js.
-                Si tu código lleva los signos < o >, escríbelos como &lt; y &gt; -->
           <pre
             class="bg-dark text-light p-3 rounded small mb-4"
           ><code>function ejercicio3() {
@@ -336,9 +302,6 @@ function ejercicio2() {
   console.log("null === undefined →", null === undefined);
 }</code></pre>
 
-          <!-- 3) La tabla «Espero / Sale», rellenada a mano.
-                Una fila por variable. Si te equivocas, añade en la columna «Sale» el badge:
-                <span class="badge text-bg-danger">Fallé</span> -->
           <div class="table-responsive">
           <table class="table table-sm table-striped align-middle mb-2">
             <thead class="table-primary">
@@ -413,9 +376,6 @@ function ejercicio2() {
           </table>
         </div>
 
-
-        <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
-              Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
           <button type="button" class="btn btn-primary" onclick="ejercicio3()">
             <i class="bi bi-play-fill"></i> Ejecutar ejercicio 3
@@ -426,69 +386,73 @@ function ejercicio2() {
         </div>
       </section>
 
+      <!--Ejercicio4-->
       <section class="card mb-4 shadow-sm">
-        <!-- 1) Título del ejercicio -->
         <div class="card-header d-flex align-items-center gap-2">
           <span class="badge text-bg-primary">Ejercicio 4</span>
-          <h2 class="h5 mb-0">Variables y typeof</h2>
+          <h2 class="h5 mb-0">Tu ficha con plantillas de cadena</h2>
         </div>
 
         <div class="card-body">
-          <!-- 2) El código: cuando termines, copia aquí tu función ejercicio1() de js/app.js.
-                Si tu código lleva los signos < o >, escríbelos como &lt; y &gt; -->
           <pre
             class="bg-dark text-light p-3 rounded small mb-4"
-          ><code>function ejercicio1() {
-  console.log("--- Ejercicio 1 · Variables y typeof ---");
+          ><code>function ejercicio4() {
+  console.log("--- Ejercicio 4 · Tu ficha con plantillas de cadena ---");
 
-  const edad = 20;   // number
-  console.log("edad =", edad, "→", typeof edad);
+  // Tus datos, con const
+  const nombre = "Jesus";
+  const ciclo = "Desarrollo de Aplicaciones Web";
+  const curso = "2º";
+  const aficion = "correr";
 
-  [aquí va el resto de tu código]
-}</code></pre>
+  // Un dato que cambia, con let
+  let horasEstudio = 2;
+  horasEstudio += 5;
 
-          <!-- 3) La tabla «Espero / Sale», rellenada a mano.
-                Una fila por variable. Si te equivocas, añade en la columna «Sale» el badge:
-                <span class="badge text-bg-danger">Fallé</span> -->
-          <div class="table-responsive">
-            <table class="table table-sm table-striped align-middle mb-2">
-              <thead class="table-primary">
-                <tr>
-                  <th scope="col">Variable</th>
-                  <th scope="col">Valor</th>
-                  <th scope="col">Espero</th>
-                  <th scope="col">Sale</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">edad</th>
-                  <td><code>20</code></td>
-                  <td><code>number</code></td>
-                  <td><code>number</code></td>
-                </tr>
-                <tr>
-                  <th scope="row">[variable]</th>
-                  <td><code>[valor]</code></td>
-                  <td><code>[lo que esperas]</code></td>
-                  <td><code>[lo que sale]</code></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+  // La ficha con plantilla de cadena: backticks (`) y ${ }
+  const ficha = `Soy ${nombre}. Estudio ${ciclo} en ${curso} curso. Mi afición es ${aficion} y esta semana he estudiado ${horasEstudio} horas.`;
+  alert(ficha);
+  console.log("Ficha con plantilla:", ficha);
 
-          <!-- 4) Tu explicación -->
-          <p class="small mb-0">
-            <strong>El caso de null:</strong> [explica en una línea qué pasa con
-            typeof null]
+  const fichaConMas =
+    "Soy " +
+    nombre +
+    ". Estudio " +
+    ciclo +
+    " en " +
+    curso +
+    " curso. Mi afición es " +
+    aficion +
+    " y esta semana he estudiado " +
+    horasEstudio +
+    " horas.";
+  console.log("Ficha concatenada con +:", fichaConMas);
+
+  console.log(
+    "¿Las dos fichas son estrictamente iguales (===)?",
+    ficha === fichaConMas,
+  );
+
+  // Recuerda: el error de dar otro valor a una const se provoca en la consola del navegador, no aquí.
+}
+</code></pre>
+
+      
+        <div class="alert alert-danger mt-3" role="alert">
+          <h5 class="alert-heading">Error al reasignar una constante</h5>
+          <p>
+            <strong>Mensaje de la consola del navegador:</strong><br>
+            <code>TypeError: Assignment to constant variable.</code>
+          </p>
+          <hr>
+          <p class="mb-0">
+            <strong>Explicación:</strong> Este error ocurre cuando intentamos asignar un nuevo valor a una variable que fue declarada originalmente con <code>const</code>. En JavaScript, <code>const</code> define un valor inmutable y al intentar cambiar su valor da el fallo.
           </p>
         </div>
 
-        <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
-              Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" onclick="ejercicio1()">
-            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 1
+          <button type="button" class="btn btn-primary" onclick="ejercicio4()">
+            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 4
           </button>
           <span class="small text-body-secondary ms-2"
             >El resultado sale en la consola (F12).</span
@@ -499,8 +463,7 @@ function ejercicio2() {
 
     <footer class="bg-body-tertiary border-top py-3">
       <div class="container small text-body-secondary">
-        [Tu nombre y apellidos] · DWEC 26/27 · Tarea 3 · Las capturas, la
-        reflexión y las fuentes están en el README.
+        Jesús Enrique de la Torre Jiménez · DWEC 26/27 · Tarea 3
       </div>
     </footer>
 
