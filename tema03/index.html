@@ -122,9 +122,14 @@ function ejercicio1() {
 
                 <tr>
                   <th scope="row">modeloCoche</th>
-                  <td><code>null</code></td>
                   <td><code>Null</code></td>
-                  <td><code>object</code></td>
+                  <td>
+                    <code>Null</code>
+                  </td>
+                  <td>
+                    <code>object</code
+                    ><span class="badge text-bg-danger">Fallé</span>
+                  </td>
                 </tr>
 
                 <tr>
@@ -190,21 +195,33 @@ function ejercicio1() {
           <pre
             class="bg-dark text-light p-3 rounded small mb-4"
           ><code>function ejercicio1() {
-function ejercicio1() {
-  console.log("--- Ejercicio 1 · Variables y typeof ---");
-  const edad = 20; // number
-  const nombre = "Jesus";
-  let estado = false;
-  let modeloCoche = null;
-  let dni = undefined;
-  const nPersonas = 9012398254740991n;
+function ejercicio2() {
+  console.log("--- Ejercicio 2 · Conversiones explícitas ---");
 
-  console.log("edad =", edad, "→", typeof edad);
-  console.log("nombre =", nombre, "→", typeof nombre);
-  console.log("estado =", estado, "→", typeof estado);
-  console.log("modeloCoche =", modeloCoche, "→", typeof modeloCoche);
-  console.log("dni =", dni, "→", typeof dni);
-  console.log("nPersonas =", nPersonas, "→", typeof nPersonas);
+  // Ejemplo: una conversión, tu predicción y el resultado con su tipo
+  const a = String(123); // espero "123"
+  console.log("String(123) →", a, typeof a);
+
+  const b = Number("123"); // espero 123
+  console.log('Number("123") →', b, typeof b);
+
+  const c = Number("12abc"); // espero NaN
+  console.log('Number("12abc") →', c, typeof c);
+
+  const d = Number(""); // espero 0
+  console.log('Number("") →', d, typeof d);
+
+  const e = Number(true); // espero 1
+  console.log("Number(true) →", e, typeof e);
+
+  const f = Boolean(0); // espero false
+  console.log("Boolean(0) →", f, typeof f);
+
+  const g = Boolean("texto"); // espero true
+  console.log('Boolean("texto") →', g, typeof g);
+
+  const h = Boolean(""); // espero false
+  console.log('Boolean("") →', h, typeof h);
 }
 }</code></pre>
 
@@ -222,14 +239,50 @@ function ejercicio1() {
               </thead>
               <tbody>
                 <tr>
-                  <th scope="row">edad</th>
-                  <td><code>20</code></td>
-                  <td><code>number</code></td>
+                  <th scope="row">String(123)</th>
+                  <td><code>"123"</code></td>
+                  <td><code>"123"</code></td>
                 </tr>
                 <tr>
-                  <th scope="row">[variable]</th>
-                  <td><code>[lo que esperas]</code></td>
-                  <td><code>[lo que sale]</code></td>
+                  <th scope="row">Number("123")</th>
+                  <td><code>123</code></td>
+                  <td><code>123</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Number("12abc")</th>
+                  <td><code>73371</code></td>
+                  <td>
+                    <code>NaN</code>
+                    <span class="badge text-bg-danger">Fallé</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Number("")</th>
+                  <td><code>Null</code></td>
+                  <td>
+                    <code>0</code>
+                    <span class="badge text-bg-danger">Fallé</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Number(true)</th>
+                  <td><code>1</code></td>
+                  <td><code>1</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Boolean(0)</th>
+                  <td><code>false</code></td>
+                  <td><code>false</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Boolean("texto")</th>
+                  <td><code>true</code></td>
+                  <td><code>true</code></td>
+                </tr>
+                <tr>
+                  <th scope="row">Boolean("")</th>
+                  <td><code>false</code></td>
+                  <td><code>false</code></td>
                 </tr>
               </tbody>
             </table>
@@ -245,8 +298,8 @@ function ejercicio1() {
         <!-- 5) El botón. onclick="ejercicio1()" hace que, al pulsarlo, se ejecute la función ejercicio1() de js/app.js.
               Cómo funciona lo veremos más adelante, con los eventos. De momento, cópialo tal cual y cambia solo el número. -->
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" onclick="ejercicio1()">
-            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 1
+          <button type="button" class="btn btn-primary" onclick="ejercicio2()">
+            <i class="bi bi-play-fill"></i> Ejecutar ejercicio 2
           </button>
           <span class="small text-body-secondary ms-2"
             >El resultado sale en la consola (F12).</span
