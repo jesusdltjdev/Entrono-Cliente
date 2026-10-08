@@ -46,25 +46,25 @@ function ejercicio2() {
   const a = String(123); // espero "123"
   console.log("String(123) →", a, typeof a);
 
-  const b = Number("123"); // espero 123
+  const b = Number("123");
   console.log('Number("123") →', b, typeof b);
 
-  const c = Number("12abc"); // espero NaN
+  const c = Number("12abc");
   console.log('Number("12abc") →', c, typeof c);
 
-  const d = Number(""); // espero 0
+  const d = Number("");
   console.log('Number("") →', d, typeof d);
 
-  const e = Number(true); // espero 1
+  const e = Number(true);
   console.log("Number(true) →", e, typeof e);
 
-  const f = Boolean(0); // espero false
+  const f = Boolean(0);
   console.log("Boolean(0) →", f, typeof f);
 
-  const g = Boolean("texto"); // espero true
+  const g = Boolean("texto");
   console.log('Boolean("texto") →', g, typeof g);
 
-  const h = Boolean(""); // espero false
+  const h = Boolean("");
   console.log('Boolean("") →', h, typeof h);
 }
 
@@ -73,15 +73,24 @@ function ejercicio3() {
   console.log("--- Ejercicio 3 · Coerción y comparaciones ---");
 
   // Ejemplo: una expresión que mezcla tipos
-  console.log('"5" - 2 →', "5" - 2); // espero [tu predicción]
+  console.log('"5" - 2 →', "5" - 2); // espero 3
 
-  // TODO: cinco expresiones más que mezclen tipos (al menos dos inventadas por ti), cada una con su «espero …».
+  // Cinco expresiones más que mezclen tipos (al menos dos inventadas)
+  console.log('"5" + 2 →', "5" + 2);
+  console.log("true + 1 →", true + 1);
+  console.log("null + 5 →", null + 5);
+  console.log("undefined + 1 →", undefined + 1);
+  console.log('"10" * "2" →', "10" * "2");
 
   // Ejemplo: la misma pareja comparada con == y con ===
-  console.log('5 == "5" →', 5 == "5"); // espero [tu predicción]
-  console.log('5 === "5" →', 5 === "5"); // espero [tu predicción]
+  console.log('5 == "5" →', 5 == "5");
+  console.log('5 === "5" →', 5 === "5");
 
-  // TODO: haz lo mismo con 0 y false, y con null y undefined.
+  // Comparaciones con 0 y false, y con null y undefined
+  console.log("0 == false →", 0 == false);
+  console.log("0 === false →", 0 === false);
+  console.log("null == undefined →", null == undefined);
+  console.log("null === undefined →", null === undefined);
 }
 
 // Ejercicio 4 · Tu ficha con plantillas de cadena
