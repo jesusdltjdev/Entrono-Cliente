@@ -167,10 +167,50 @@ function bucleFor() {
 
 function bucleWhile() {
   // TODO: lo mismo que bucleFor(), con un while.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    while (contador < veces) {
+      anadirLinea(`for · repetición ${i} de ${veces}`);
+      contador++;
+    }
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
 
 function bucleDoWhile() {
   // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    do {
+      anadirLinea(`for · repetición ${i} de ${veces}`);
+      contador++;
+    } while (contador < veces);
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
 
 // ============================================================
