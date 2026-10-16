@@ -1,33 +1,40 @@
 /*
-  Tarea 4 · DWEC · [Tu nombre y apellidos]
+  Tarea 4 · DWEC · Jesús Enrique de la Torre Jiménez
   Calculadora y bucles.
-
-  Cómo usar esta plantilla:
-  · Hay una función por botón. Cada una se ejecuta al pulsar su botón de index.html.
-  · sumar() está hecha: es el modelo. Escribe las demás donde pone TODO y, cuando termines, borra el TODO.
-  · Para leer las casillas y escribir el resultado usa las funciones de js/ayudas.js:
-      leerNumero("numero1"), mostrar(texto, color), anadirLinea(texto), anadirBadge(texto, color), limpiarSalida()
-  · Además de en la página, cada función deja su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
 */
 
 console.log("app.js cargado");
 
-const MAXIMO_REPETICIONES = 20; // para que un bucle no llene la página
+const MAXIMO_REPETICIONES = 20;
+
+// ============================================================
+// Función auxiliar refactorizada
+// ============================================================
+
+function leerValidarNumeros() {
+  let n1 = leerNumero("numero1");
+  let n2 = leerNumero("numero2");
+
+  if (Number.isNaN(n1) || Number.isNaN(n2)) {
+    const mensaje = "Escribe los dos números antes de operar.";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+
+    n1 = NaN;
+    n2 = NaN;
+  }
+
+  return { n1, n2 };
+}
 
 // ============================================================
 // Ejercicio 1 · Calculadora
 // ============================================================
 
-// El modelo: lee los dos números, comprueba que están y opera
 function sumar() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Sumar: falta algún número");
-  } else {
+  if (!Number.isNaN(n1)) {
     const resultado = n1 + n2;
     mostrar(`${n1} + ${n2} = ${resultado}`);
     console.log(`Sumar: ${n1} + ${n2} = ${resultado}`);
@@ -35,13 +42,9 @@ function sumar() {
 }
 
 function restar() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Restar: falta algún número");
-  } else {
+  if (!Number.isNaN(n1)) {
     const resultado = n1 - n2;
     mostrar(`${n1} - ${n2} = ${resultado}`);
     console.log(`Restar: ${n1} - ${n2} = ${resultado}`);
@@ -49,13 +52,9 @@ function restar() {
 }
 
 function multiplicar() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Multiplicar: falta algún número");
-  } else {
+  if (!Number.isNaN(n1)) {
     const resultado = n1 * n2;
     mostrar(`${n1} * ${n2} = ${resultado}`);
     console.log(`Multiplicar: ${n1} * ${n2} = ${resultado}`);
@@ -63,33 +62,24 @@ function multiplicar() {
 }
 
 function dividir() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Dividir: falta algún número");
-
-    // Creamos un condicional para no permitir al usuario dividir entre 0
-  } else if (n2 === 0) {
-    mostrar("El número 2 no puede ser igual a 0.", "danger");
-    // Creamos un error en consola mostrando que el número 2 no puede ser igual a 0
-    console.error("Multiplicar: el número 2 no puede ser igual a 0");
-  } else {
-    const resultado = n1 / n2;
-    mostrar(`${n1} / ${n2} = ${resultado}`);
-    console.log(`Dividir: ${n1} / ${n2} = ${resultado}`);
+  if (!Number.isNaN(n1)) {
+    if (n2 === 0) {
+      mostrar("El número 2 no puede ser igual a 0.", "danger");
+      console.error("Dividir: el número 2 no puede ser igual a 0");
+    } else {
+      const resultado = n1 / n2;
+      mostrar(`${n1} / ${n2} = ${resultado}`);
+      console.log(`Dividir: ${n1} / ${n2} = ${resultado}`);
+    }
   }
 }
 
 function potencia() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Elevar: falta algún número");
-  } else {
+  if (!Number.isNaN(n1)) {
     const resultado = n1 ** n2;
     mostrar(`${n1} ** ${n2} = ${resultado}`);
     console.log(`Elevar: ${n1} ** ${n2} = ${resultado}`);
@@ -97,22 +87,17 @@ function potencia() {
 }
 
 function modulo() {
-  const n1 = leerNumero("numero1");
-  const n2 = leerNumero("numero2");
+  const { n1, n2 } = leerValidarNumeros();
 
-  if (Number.isNaN(n1) || Number.isNaN(n2)) {
-    mostrar("Escribe los dos números antes de operar.", "danger");
-    console.warn("Dividir: falta algún número");
-
-    // Creamos un condicional para no permitir al usuario hacer el modulo de 0
-  } else if (n2 === 0) {
-    mostrar("El número 2 no puede ser igual a 0.", "danger");
-    // Creamos un error en consola mostrando que el número 2 no puede ser igual a 0
-    console.error("Módulo: el número 2 no puede ser igual a 0");
-  } else {
-    const resultado = n1 % n2;
-    mostrar(`${n1} % ${n2} = ${resultado}`);
-    console.log(`Módulo: ${n1} % ${n2} = ${resultado}`);
+  if (!Number.isNaN(n1)) {
+    if (n2 === 0) {
+      mostrar("El número 2 no puede ser igual a 0.", "danger");
+      console.error("Módulo: el número 2 no puede ser igual a 0");
+    } else {
+      const resultado = n1 % n2;
+      mostrar(`${n1} % ${n2} = ${resultado}`);
+      console.log(`Módulo: ${n1} % ${n2} = ${resultado}`);
+    }
   }
 }
 
@@ -122,11 +107,34 @@ function modulo() {
 
 function cualEsMayor() {
   // TODO: con if, else if y else, di cuál de los dos números es mayor o si son iguales.
+  const { n1, n2 } = leerValidarNumeros();
+  if (!Number.isNaN(n1)) {
+    let resultado = "";
+
+    if (n1 > n2) {
+      resultado = "es mayor que";
+    } else if (n1 < n2) {
+      resultado = "es menor que";
+    } else {
+      resultado = "es igual que";
+    }
+
+    mostrar(`${n1} ${resultado} ${n2}`);
+    console.log(`Módulo: ${n1} ${resultado} ${n2}`);
+  }
 }
 
 function parOImpar() {
-  // TODO: solo con el número 1. Usa el operador % y el ternario ( condición ? "par" : "impar" ).
-  // TODO: si el número tiene decimales, avisa de que no es ni par ni impar.
+  const { n1, n2 } = leerValidarNumeros();
+
+  let resultado = n1 % 2 === 0 ? "par" : "impar";
+
+  if (n1 % 1 !== 0) {
+    resultado = "decimal, no es ni par ni impar";
+  }
+
+  mostrar(`El número ${n1} es ${resultado}`);
+  console.log(`ParOImpar: El número ${n1} es ${resultado}`);
 }
 
 // ============================================================
@@ -138,11 +146,23 @@ function bucleFor() {
   const veces = leerNumero("numero1");
   limpiarSalida();
 
-  // TODO: si el número falta, tiene decimales o pasa de MAXIMO_REPETICIONES, muestra un error en rojo.
-  // TODO: si no, repite con un for tantas veces como diga «veces». En cada vuelta:
-  //         anadirLinea(`for · repetición ${i} de ${veces}`);
-  //       y cuenta las vueltas en una variable contador.
-  // TODO: al terminar, añade una línea con el total: «Total: 5 repeticiones» o «Total: 1 repetición».
+  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    for (i = 0; i < veces; i++) {
+      anadirLinea(`for · repetición ${i} de ${veces}`);
+      contador++;
+    }
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
 
 function bucleWhile() {

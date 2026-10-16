@@ -12,3 +12,7 @@ function queNavegadorSoy() {
   console.log("Se ha pulsado el botón de navegador: " + navigator.userAgent);
   alert("Tu navegador es:\n" + navigator.userAgent);
 }
+
+function despedida() {
+  alert("Adios");
+}
