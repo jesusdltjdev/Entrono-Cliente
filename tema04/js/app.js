@@ -146,7 +146,7 @@ function bucleFor() {
   const veces = leerNumero("numero1");
   limpiarSalida();
 
-  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
     const mensaje = "El número 1 tiene que cumplir las condiciones";
     mostrar(mensaje, "danger");
     console.warn(mensaje);
@@ -160,17 +160,16 @@ function bucleFor() {
 
     let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
 
-    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
     console.log(`Total: ${contador} ${palabraRepeticiones}`);
   }
 }
 
 function bucleWhile() {
-  // TODO: lo mismo que bucleFor(), con un while.
   const veces = leerNumero("numero1");
   limpiarSalida();
 
-  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
     const mensaje = "El número 1 tiene que cumplir las condiciones";
     mostrar(mensaje, "danger");
     console.warn(mensaje);
@@ -184,17 +183,16 @@ function bucleWhile() {
 
     let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
 
-    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
     console.log(`Total: ${contador} ${palabraRepeticiones}`);
   }
 }
 
 function bucleDoWhile() {
-  // TODO: lo mismo que bucleFor(), con un do…while. Pruébalo con 0 y con un negativo: ¿qué pasa?
   const veces = leerNumero("numero1");
   limpiarSalida();
 
-  if (Number.isNaN(n1) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
     const mensaje = "El número 1 tiene que cumplir las condiciones";
     mostrar(mensaje, "danger");
     console.warn(mensaje);
@@ -208,7 +206,7 @@ function bucleDoWhile() {
 
     let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
 
-    mostrar(`Total: ${contador} ${palabraRepeticiones}`);
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
     console.log(`Total: ${contador} ${palabraRepeticiones}`);
   }
 }
@@ -218,15 +216,73 @@ function bucleDoWhile() {
 // ============================================================
 
 function badgesFor() {
-  // TODO: como bucleFor(), pero cada vuelta añade un badge con el número de la repetición:
-  //         anadirBadge(i, "primary");
-  // TODO: los pares, de un color y los impares, de otro. Elige el color con el operador ternario.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    for (let i = 0; i < veces; i++) {
+      let color = i % 2 === 0 ? "success" : "warning";
+      anadirBadge(i, color);
+      contador++;
+    }
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
 
 function badgesWhile() {
-  // TODO: lo mismo que badgesFor(), con un while.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    while (contador < veces) {
+      let color = contador % 2 === 0 ? "success" : "warning";
+      anadirBadge(contador, color);
+      contador++;
+    }
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
 
 function badgesDoWhile() {
-  // TODO: lo mismo que badgesFor(), con un do…while.
+  const veces = leerNumero("numero1");
+  limpiarSalida();
+
+  if (Number.isNaN(veces) || veces % 1 !== 0 || veces > MAXIMO_REPETICIONES) {
+    const mensaje = "El número 1 tiene que cumplir las condiciones";
+    mostrar(mensaje, "danger");
+    console.warn(mensaje);
+  } else {
+    let contador = 0;
+
+    do {
+      let color = contador % 2 === 0 ? "success" : "warning";
+      anadirBadge(contador, color);
+      contador++;
+    } while (contador < veces);
+
+    let palabraRepeticiones = veces === 1 ? "repeticion" : "repeticiones";
+
+    anadirLinea(`Total: ${contador} ${palabraRepeticiones}`);
+    console.log(`Total: ${contador} ${palabraRepeticiones}`);
+  }
 }
