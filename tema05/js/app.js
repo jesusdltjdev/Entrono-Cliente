@@ -69,11 +69,9 @@ function activarResaltado() {
     parrafo.addEventListener("mouseleave", function () {
       parrafo.classList.remove("bg-body-secondary");
     });
-
-    console.log(
-      "Se ha activado el resaltado de párafos para " + parrafo.length,
-    );
   }
+
+  console.log("Se ha activado el resaltado de párafos para " + parrafos.length);
 }
 
 // ============================================================
@@ -81,14 +79,33 @@ function activarResaltado() {
 // ============================================================
 
 function cambiarTexto() {
-  // TODO: lee lo escrito en #nuevoTexto con value y quítale los espacios de los extremos con trim().
-  // TODO: si está vacío, muestra el error #error4 (quítale "d-none") y no cambies nada.
-  // TODO: si no, pon ese texto en el primer párrafo de #contenido con textContent y oculta el error.
+  const nuevoTexto = document.querySelector("#nuevoTexto");
+  let valor = nuevoTexto.value;
+  const error4 = document.getElementById("error4");
+
+  if (valor === "") {
+    error4.classList.remove("d-none");
+    console.log("El contenido esta vacio no se ha añadido");
+  } else {
+    error4.classList.add("d-none");
+    document.querySelector("#contenido p").textContent = valor.trim();
+    console.log("El contenido se ha añadido");
+  }
 }
 
 function cambiarConHtml() {
-  // TODO: lo mismo que cambiarTexto(), pero con innerHTML.
-  //       Prueba las dos con <b>hola</b> y explica en el README qué diferencia ves y por qué es peligroso.
+  const nuevoTexto = document.querySelector("#nuevoTexto");
+  let valor = nuevoTexto.value;
+  const error4 = document.getElementById("error4");
+
+  if (valor === "") {
+    error4.classList.remove("d-none");
+    console.log("El contenido esta vacio no se ha añadido");
+  } else {
+    error4.classList.add("d-none");
+    document.querySelector("#contenido p").innerHTML = valor.trim();
+    console.log("El contenido se ha añadido con innerHTML");
+  }
 }
 
 // ============================================================
