@@ -1,5 +1,5 @@
 /*
-  Tarea 5 · DWEC · [Tu nombre y apellidos]
+  Tarea 5 · DWEC · Jesús de la Torre Jiménez
   Manipular el DOM.
 
   Cómo usar esta plantilla:
@@ -36,17 +36,18 @@ function aplicarCambios() {
 // ============================================================
 
 function anadirParrafo() {
-  parrafo = document.createElement("p");
-  nParrafos = document.querySelector("#contenido").children.length;
+  let parrafo = document.createElement("p");
+  let nParrafos = document.querySelector("#contenido").children.length;
   parrafo.textContent = "Párrafo nuevo " + nParrafos;
   document.getElementById("contenido").append(parrafo);
   console.log("Se ha añadido el párafo");
+  document.getElementById("aviso2").classList.add("d-none");
 }
 
 function eliminarUltimo() {
   const contenido = document.getElementById("contenido");
   if (contenido.lastElementChild !== null) {
-    contenido.removeChild(contenido.lastElementChild);
+    contenido.lastElementChild.remove();
     console.log("Se ha eliminado el último párafo");
   } else {
     document.getElementById("aviso2").classList.remove("d-none");
@@ -80,7 +81,7 @@ function activarResaltado() {
 
 function cambiarTexto() {
   const nuevoTexto = document.querySelector("#nuevoTexto");
-  let valor = nuevoTexto.value;
+  let valor = nuevoTexto.value.trim();
   const error4 = document.getElementById("error4");
 
   if (valor === "") {
@@ -88,22 +89,22 @@ function cambiarTexto() {
     console.log("El contenido esta vacio no se ha añadido");
   } else {
     error4.classList.add("d-none");
-    document.querySelector("#contenido p").textContent = valor.trim();
+    document.querySelector("#contenido p").textContent = valor;
     console.log("El contenido se ha añadido");
   }
 }
 
 function cambiarConHtml() {
   const nuevoTexto = document.querySelector("#nuevoTexto");
-  let valor = nuevoTexto.value;
+  let valor = nuevoTexto.value.trim();
   const error4 = document.getElementById("error4");
 
   if (valor === "") {
     error4.classList.remove("d-none");
-    console.log("El contenido esta vacio no se ha añadido");
+    console.log("El contenido está vacio no se ha añadido");
   } else {
     error4.classList.add("d-none");
-    document.querySelector("#contenido p").innerHTML = valor.trim();
+    document.querySelector("#contenido p").innerHTML = valor;
     console.log("El contenido se ha añadido con innerHTML");
   }
 }
@@ -113,19 +114,53 @@ function cambiarConHtml() {
 // ============================================================
 
 function anadirTarea() {
-  // TODO: lee el texto de #tareaInput (value + trim). Si está vacío, muestra un mensaje en #error5.
-  // TODO: si no, crea un <li class="list-group-item"> con dos elementos dentro:
-  //         · un <input> de tipo "checkbox" con la clase "form-check-input",
-  //         · un <span> con el texto de la tarea (textContent).
-  //       Cuelga el <li> de #listaTareas y vacía la casilla (value = "").
-  // TODO: actualiza #totalTareas con el número de <li> que hay en la lista.
+  const tareaInput = document.querySelector("#tareaInput");
+  const valor = tareaInput.value.trim();
+  const error5 = document.getElementById("error5");
+  const listaTareas = document.getElementById("listaTareas");
+
+  if (valor === "") {
+    error5.classList.remove("d-none");
+    error5.textContent = "No se puede añadir una tarea vacía";
+    console.log("El contenido está vacío, no se ha añadido");
+  } else {
+    error5.classList.add("d-none");
+
+    let lista = document.createElement("li");
+    lista.classList.add("list-group-item");
+
+    lista.innerHTML = `<input type="checkbox" class="form-check-input"> <span>${valor}</span>`;
+
+    listaTareas.append(lista);
+    tareaInput.value = "";
+    console.log("La tarea se ha añadido correctamente");
+
+    const totalTareasElement = document.getElementById("totalTareas");
+    const numeroDeTareas = listaTareas.querySelectorAll("li").length;
+    totalTareasElement.textContent = numeroDeTareas;
+  }
 }
 
 function borrarCompletadas() {
-  // TODO: selecciona las casillas marcadas: document.querySelectorAll("#listaTareas input:checked").
-  // TODO: si no hay ninguna, avisa en #error5. Si hay, recórrelas con for…of y borra el <li> de cada una
-  //       (el <li> es el padre de la casilla: parentElement).
-  // TODO: actualiza #totalTareas.
+  const tareasMarcadas = document.querySelectorAll(
+    "#listaTareas input:checked",
+  );
+  const error5 = document.getElementById("error5");
+  const listaTareas = document.getElementById("listaTareas");
+
+  if (tareasMarcadas.length === 0) {
+    error5.classList.remove("d-none");
+    error5.textContent = "No hay tareas marcadas";
+    console.log("No hay tareas marcadas para borrar");
+  } else {
+    for (const tarea of tareasMarcadas) {
+      tarea.parentElement.remove();
+    }
+    const totalTareasElement = document.getElementById("totalTareas");
+    const numeroDeTareas = listaTareas.querySelectorAll("li").length;
+    totalTareasElement.textContent = numeroDeTareas;
+    console.log("Se han eliminado las tareas marcadas");
+  }
 }
 
 // ============================================================
@@ -137,9 +172,26 @@ function verDatosVentana() {
   const ancho = window.innerWidth;
   const alto = window.innerHeight;
   document.querySelector("#datoVentana").textContent = `${ancho} × ${alto} px`;
+  const datoPunto = document.querySelector("#datoPunto");
+  if (ancho < 576) {
+    datoPunto.textContent = "xs (menor de 576)";
+  } else if (ancho >= 576 && ancho < 768) {
+    datoPunto.textContent = "sm (de 576 a 767)";
+  } else if (ancho >= 768 && ancho < 992) {
+    datoPunto.textContent = "md (de 768 a 991)";
+  } else if (ancho >= 992 && ancho < 1200) {
+    datoPunto.textContent = "lg (de 992 a 1199)";
+  } else if (ancho >= 1200 && ancho < 1400) {
+    datoPunto.textContent = "xl (de 1200 a 1399)";
+  } else {
+    datoPunto.textContent = "xxl (1400 o más)";
+  }
 
-  // TODO: con if / else if, el punto de corte de Bootstrap según el ancho: xs (< 576), sm (≥ 576), md (≥ 768),
-  //       lg (≥ 992), xl (≥ 1200) y xxl (≥ 1400). Escríbelo en #datoPunto.
-  // TODO: el tamaño de la pantalla (screen.width y screen.height) en #datoPantalla.
-  // TODO: la URL (location.href) en #datoUrl y el idioma del navegador (navigator.language) en #datoIdioma.
+  const anchoP = screen.width;
+  const altoP = screen.height;
+  document.querySelector("#datoPantalla").textContent =
+    `${anchoP} × ${altoP} px`;
+
+  document.querySelector("#datoUrl").textContent = location.href;
+  document.querySelector("#datoIdioma").textContent = navigator.language;
 }
