@@ -20,18 +20,14 @@ console.log("app.js cargado");
 // ============================================================
 
 function aplicarCambios() {
-  // El modelo: el primer párrafo, por su id
   const primero = document.getElementById("primero");
   primero.textContent = "Texto modificado por JavaScript";
 
-  // TODO: el segundo párrafo, con querySelector y su clase (.segundo): resáltalo con la clase "bg-warning-subtle".
   const segundo = document.querySelector(".segundo");
   segundo.classList.add("bg-warning-subtle");
 
-  // TODO: el tercero, con querySelectorAll("#contenido p") y su posición en la lista: ponlo en rojo con "text-danger".
   const tercero = document.querySelectorAll("#contenido p")[2];
   tercero.classList.add("text-danger");
-  // TODO: un console.log() que diga que se han aplicado los cambios.
   console.log("Se han aplicados los cambios en los 3 primeros párafos");
 }
 
@@ -40,16 +36,22 @@ function aplicarCambios() {
 // ============================================================
 
 function anadirParrafo() {
-  // TODO: crea un <p> con document.createElement().
-  // TODO: dale el texto «Párrafo nuevo N», donde N es el número de párrafos que habrá en #contenido
-  //       (pista: document.querySelector("#contenido").children.length).
-  // TODO: cuélgalo al final de #contenido con append().
+  parrafo = document.createElement("p");
+  nParrafos = document.querySelector("#contenido").children.length;
+  parrafo.textContent = "Párrafo nuevo " + nParrafos;
+  document.getElementById("contenido").append(parrafo);
+  console.log("Se ha añadido el párafo");
 }
 
 function eliminarUltimo() {
-  // TODO: busca el último párrafo de #contenido (lastElementChild).
-  // TODO: si es null (ya no queda ninguno), muestra el aviso #aviso2 quitándole la clase "d-none".
-  //       Si no, bórralo con remove().
+  const contenido = document.getElementById("contenido");
+  if (contenido.lastElementChild !== null) {
+    contenido.removeChild(contenido.lastElementChild);
+    console.log("Se ha eliminado el último párafo");
+  } else {
+    document.getElementById("aviso2").classList.remove("d-none");
+    console.log("Se ha activado el aviso2, no hay mas párafos a borrar");
+  }
 }
 
 // ============================================================
@@ -60,16 +62,18 @@ function activarResaltado() {
   const parrafos = document.querySelectorAll("#contenido p");
 
   for (const parrafo of parrafos) {
-    // addEventListener("mouseenter", ...) ejecuta la función cuando el ratón entra en el párrafo.
-    // Los eventos los veremos a fondo en el tema 9: de momento, copia este modelo.
     parrafo.addEventListener("mouseenter", function () {
       parrafo.classList.add("bg-body-secondary");
     });
 
-    // TODO: lo mismo con "mouseleave" (cuando el ratón sale) para quitar la clase.
-  }
+    parrafo.addEventListener("mouseleave", function () {
+      parrafo.classList.remove("bg-body-secondary");
+    });
 
-  // TODO: un console.log() que diga en cuántos párrafos se ha activado (parrafos.length).
+    console.log(
+      "Se ha activado el resaltado de párafos para " + parrafo.length,
+    );
+  }
 }
 
 // ============================================================
