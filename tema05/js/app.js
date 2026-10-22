@@ -1,17 +1,3 @@
-/*
-  Tarea 5 · DWEC · Jesús de la Torre Jiménez
-  Manipular el DOM.
-
-  Cómo usar esta plantilla:
-  · Desde este tema, el JavaScript escribe en la página: selecciona elementos y cambia su texto, sus clases...
-  · Hay una función por botón. Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · app.js se carga en el <head> con defer: cuando se ejecuta, el HTML ya está leído.
-  · Selecciona con document.querySelector() / querySelectorAll() (o getElementById).
-  · Texto con textContent; aspecto con classList y las clases de Bootstrap (no con style).
-  · Cada función deja también su rastro en la consola con console.log().
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
-*/
-
 console.log("app.js cargado");
 
 // ============================================================
@@ -37,7 +23,7 @@ function aplicarCambios() {
 
 function anadirParrafo() {
   let parrafo = document.createElement("p");
-  let nParrafos = document.querySelector("#contenido").children.length;
+  let nParrafos = document.querySelector("#contenido").children.length + 1;
   parrafo.textContent = "Párrafo nuevo " + nParrafos;
   document.getElementById("contenido").append(parrafo);
   console.log("Se ha añadido el párafo");
