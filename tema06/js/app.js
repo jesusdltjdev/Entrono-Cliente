@@ -245,28 +245,83 @@ mostrarProductos();   // la tabla completa nada más cargar
 
 const alumno = {
   nombre: "Jesús de la Torre",
-  notas: []
-  // TODO: método anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
-  //       si es válida, la añade a this.notas con push y devuelve true.
-  // TODO: método media(): si no hay notas devuelve 0; si hay, la suma (con reduce) dividida entre el número de notas.
-  //       Recuerda la coma entre una propiedad y la siguiente.
+  notas: [],
+  anadirNota: function (nota) {
+    if (typeof nota !== "number" || Number.isNaN(nota) || nota < 0 || nota > 10) {
+      return false;
+    }
+    this.notas.push(nota);
+    return true;
+  },
+  media: function () {
+    if (this.notas.length === 0) {
+      return 0;
+    }
+    const suma = this.notas.reduce(function (acumulador, actual) {
+      return acumulador + actual;
+    }, 0);
+    return suma / this.notas.length;
+  }
 };
 
 function mostrarNotas() {
-  // TODO: vacía #notas y pon un badge (<span class="badge">) por nota: verde (text-bg-success) si es de 5 o más,
-  //       rojo (text-bg-danger) si no.
-  // TODO: en #media, «Media de N notas: X» con dos decimales (toFixed(2)), o «Todavía no hay notas.».
+  const contenedor = document.querySelector("#notas");
+  contenedor.textContent = "";
+
+  alumno.notas.forEach(function (nota) {
+    const badge = document.createElement("span");
+    badge.classList.add("badge", "me-1");
+    if (nota >= 5) {
+      badge.classList.add("text-bg-success");
+    } else {
+      badge.classList.add("text-bg-danger");
+    }
+    badge.textContent = nota;
+    contenedor.append(badge);
+  });
+
+  const pMedia = document.querySelector("#media");
+  if (alumno.notas.length === 0) {
+    pMedia.textContent = "Todavía no hay notas.";
+  } else {
+    pMedia.textContent = `Media de ${alumno.notas.length} notas: ${alumno.media().toFixed(2)}`;
+  }
+  console.log("Ejercicio 4: mostrar notas:", alumno.notas, "media:", alumno.media());
 }
 
 function anadirNota() {
-  // TODO: si #nota está vacía, muestra un error en #error4 (quítale "d-none").
-  //       Ojo: Number("") vale 0, así que esta comprobación va antes de convertir.
-  // TODO: convierte el valor con Number() y llama a alumno.anadirNota(). Si devuelve false, muestra el error.
-  // TODO: si ha ido bien, oculta el error, vacía la casilla y llama a mostrarNotas().
+  const input = document.querySelector("#nota");
+  const valor = input.value.trim();
+  const error = document.querySelector("#error4");
+
+  if (valor === "") {
+    error.textContent = "Debes escribir una nota antes de añadir.";
+    error.classList.remove("d-none");
+    console.log("Ejercicio 4: casilla vacia");
+    return;
+  }
+
+  const notaNumero = Number(valor);
+  const esValida = alumno.anadirNota(notaNumero);
+
+  if (!esValida) {
+    error.textContent = "La nota debe ser un número entre 0 y 10.";
+    error.classList.remove("d-none");
+    console.log("Ejercicio 4: nota no valida:", valor);
+    return;
+  }
+
+  error.classList.add("d-none");
+  input.value = "";
+  mostrarNotas();
+  console.log("Ejercicio 4: nota anadida con exito:", notaNumero);
 }
 
 function borrarNotas() {
-  // TODO: deja alumno.notas vacío y vuelve a pintar.
+  alumno.notas = [];
+  document.querySelector("#error4").classList.add("d-none");
+  mostrarNotas();
+  console.log("Ejercicio 4: notas borradas");
 }
 
 mostrarNotas();
@@ -279,21 +334,86 @@ mostrarNotas();
 const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 function verDobles() {
-  // TODO: con map(), un array nuevo con el doble de cada número.
-  // TODO: escribe en #salida5 el resultado y, debajo, numeros (para que se vea que no ha cambiado).
+  const salida = document.querySelector("#salida5");
+  salida.textContent = "";
+
+  const dobles = numeros.map(function (n) {
+    return n * 2;
+  });
+
+  const linea1 = document.createElement("div");
+  linea1.textContent = "Dobles (map): " + comoTexto(dobles);
+
+  const linea2 = document.createElement("div");
+  linea2.textContent = "Original: " + comoTexto(numeros);
+
+  salida.append(linea1, linea2);
+  console.log("Ejercicio 5: ver dobles:", dobles);
 }
 
 function verPares() {
-  // TODO: con filter(), los números pares (n % 2 === 0). Escríbelos en #salida5 como en verDobles().
+  const salida = document.querySelector("#salida5");
+  salida.textContent = "";
+
+  const pares = numeros.filter(function (n) {
+    return n % 2 === 0;
+  });
+
+  const linea1 = document.createElement("div");
+  linea1.textContent = "Pares (filter): " + comoTexto(pares);
+
+  const linea2 = document.createElement("div");
+  linea2.textContent = "Original: " + comoTexto(numeros);
+
+  salida.append(linea1, linea2);
+  console.log("Ejercicio 5: ver pares:", pares);
 }
 
 function verSuma() {
-  // TODO: con reduce(), la suma de todos los números (empieza en 0). Escríbela en #salida5.
+  const salida = document.querySelector("#salida5");
+  salida.textContent = "";
+
+  const suma = numeros.reduce(function (acumulador, n) {
+    return acumulador + n;
+  }, 0);
+
+  const linea1 = document.createElement("div");
+  linea1.textContent = "Suma (reduce): " + suma;
+
+  const linea2 = document.createElement("div");
+  linea2.textContent = "Original: " + comoTexto(numeros);
+
+  salida.append(linea1, linea2);
+  console.log("Ejercicio 5: ver suma:", suma);
 }
 
 function verCadena() {
-  // TODO: los tres seguidos: los pares, después sus dobles y al final la suma de esos dobles.
-  //       Escribe en #salida5 una línea por paso.
+  const salida = document.querySelector("#salida5");
+  salida.textContent = "";
+
+  const pares = numeros.filter(function (n) {
+    return n % 2 === 0;
+  });
+
+  const dobles = pares.map(function (n) {
+    return n * 2;
+  });
+
+  const suma = dobles.reduce(function (acumulador, n) {
+    return acumulador + n;
+  }, 0);
+
+  const linea1 = document.createElement("div");
+  linea1.textContent = "1. filter - " + comoTexto(pares);
+
+  const linea2 = document.createElement("div");
+  linea2.textContent = "2. map - " + comoTexto(dobles);
+
+  const linea3 = document.createElement("div");
+  linea3.textContent = "3. reduce - " + suma;
+
+  salida.append(linea1, linea2, linea3);
+  console.log("Ejercicio 5: tres seguidos:", suma);
 }
 
 
