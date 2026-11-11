@@ -1,5 +1,5 @@
 /*
-  Tarea 7 · DWEC · [Tu nombre y apellidos]
+  Tarea 7 · DWEC · Jesús de la Torre Jimenez
   Funciones, flechas y clases.
 
   Cómo usar esta plantilla:
@@ -38,55 +38,44 @@ function pintarLista(selector, textos) {
 // Ejercicio 1 · Precio final
 // ============================================================
 
-// TODO: calcularPrecio(base, iva, descuento) devuelve el precio final con return. No lee ni pinta nada.
-//       iva vale 21 por defecto y descuento, 0 por defecto (parámetros por defecto).
-//       Primero se resta el descuento (un tanto por ciento de la base) y después se suma el IVA.
-//       Comprueba en la consola: calcularPrecio(100) tiene que dar 121.
-
-
 function calcularPrecio(base, iva = 21, descuento = 0) {
-  let precio = (base - base * descuento / 100) * (1 + iva / 100);
+  let precio = (base - (base * descuento) / 100) * (1 + iva / 100);
   return precio;
 }
 
-// Ya está hecha: 74.8 → "74.80 €"
 function formatearEuros(cantidad) {
   return cantidad.toFixed(2) + " €";
 }
 
 function mostrarPrecio() {
-  // TODO: lee #base, #iva y #descuento (value). El IVA conviértelo con Number().
-  // TODO: si la base está vacía o es negativa, error en #error1 (quítale "d-none") y no sigas.
-  // TODO: si el descuento está vacío, llama a calcularPrecio(base, iva), sin el tercer argumento, para que se
-  //       use el valor por defecto. Si no, comprueba que está entre 0 y 100 y pásaselo.
-  // TODO: oculta el error y pinta el desglose en #salida1 con pintarLista():
-  //       «Precio sin IVA: …», «Descuento: … %», «IVA: … %» y «Precio final: …» (con formatearEuros).
-
-  const base = parseFloat(document.querySelector("#base").value.trim());
+  const baseInput = document.querySelector("#base").value.trim();
   const iva = Number(document.querySelector("#iva").value);
-  const descuento = parseFloat(document.querySelector("#descuento").value);
-  let descuentoAplicado = 0;
+  const descuentoInput = document.querySelector("#descuento").value.trim();
 
   const error1 = document.querySelector("#error1");
   const salida1 = document.querySelector("#salida1");
 
-  if (base === "" || isNaN(base) || base < 0) {
+  if (baseInput === "" || Number(baseInput) < 0 || isNaN(Number(baseInput))) {
     error1.textContent = "Debes indicar una base válida (número mayor o igual a 0).";
     error1.classList.remove("d-none");
     salida1.textContent = "";
     return;
   }
 
+  const base = Number(baseInput);
+  let descuentoAplicado = 0;
   let precioFinal;
 
-  if (isNaN(descuento)) {
+  if (descuentoInput === "") {
     precioFinal = calcularPrecio(base, iva);
-  } else if (descuento < 0 || descuento > 100) {
-    error1.textContent = "El descuento debe ser un porcentaje entre 0 y 100";
-    error1.classList.remove("d-none");
-    salida1.textContent = "";
-    return;
   } else {
+    const descuento = Number(descuentoInput);
+    if (isNaN(descuento) || descuento < 0 || descuento > 100) {
+      error1.textContent = "El descuento debe ser un porcentaje entre 0 y 100.";
+      error1.classList.remove("d-none");
+      salida1.textContent = "";
+      return;
+    }
     descuentoAplicado = descuento;
     precioFinal = calcularPrecio(base, iva, descuento);
   }
@@ -102,8 +91,7 @@ function mostrarPrecio() {
   ];
 
   pintarLista("#salida1", textoPrecio);
-
-  console.log("Ejercicio 1: Precio final calculado ", precioFinal);
+  console.log("Ejercicio 1: Precio final calculado", precioFinal);
 }
 
 
@@ -120,59 +108,50 @@ const peliculas = [
   { titulo: "Toy Story", anio: 1995, duracion: 81 }
 ];
 
-// Ya está hecha: una película como texto, «Coco (2017) · 105 min»
 function comoTexto(pelicula) {
   return `${pelicula.titulo} (${pelicula.anio}) · ${pelicula.duracion} min`;
 }
 
-// Las cuatro funciones siguientes ya funcionan, pero sus callbacks están escritos con function, como en el tema 6.
-// TODO: pasa a flecha los cuatro callbacks (map, filter, sort y reduce). Si el cuerpo es solo una expresión,
-//       sin llaves ni return. Comprueba después que cada botón sigue dando lo mismo.
-
 function verTitulos() {
-  const titulos = peliculas.map(pelicula => pelicula.titulo);
+  const titulos = peliculas.map((pelicula) => pelicula.titulo);
   pintarLista("#salida2", titulos);
   document.querySelector("#mensaje2").textContent = `${titulos.length} títulos.`;
-  console.log("Ejercicio 2: map →", titulos);
+  console.log("Ejercicio 2: map ->", titulos);
 }
 
 function verLargas() {
-  const largas = peliculas.filter(pelicula => pelicula.duracion > 120);
-  pintarLista("#salida2", largas.map(comoTexto));   // comoTexto ya es una función: se pasa sin paréntesis
+  const largas = peliculas.filter((pelicula) => pelicula.duracion > 120);
+  pintarLista("#salida2", largas.map(comoTexto));
   document.querySelector("#mensaje2").textContent = `${largas.length} películas duran más de 2 horas.`;
-  console.log("Ejercicio 2: filter →", largas);
+  console.log("Ejercicio 2: filter ->", largas);
 }
 
 function ordenarPorAnio() {
   const ordenadas = [...peliculas].sort((a, b) => a.anio - b.anio);
   pintarLista("#salida2", ordenadas.map(comoTexto));
   document.querySelector("#mensaje2").textContent = "De la más antigua a la más reciente.";
-  console.log("Ejercicio 2: sort →", ordenadas);
+  console.log("Ejercicio 2: sort ->", ordenadas);
 }
 
 function verDuracionTotal() {
   const minutos = peliculas.reduce((total, pelicula) => total + pelicula.duracion, 0);
   pintarLista("#salida2", [`${minutos} minutos de películas`]);
   document.querySelector("#mensaje2").textContent = "La suma de las seis duraciones.";
-  console.log("Ejercicio 2: reduce →", minutos);
+  console.log("Ejercicio 2: reduce ->", minutos);
 }
 
 function buscarAntigua() {
-  // TODO: el callback nuevo, ya con flecha: con find(), la primera película anterior a 1990.
-  // TODO: find devuelve undefined si no hay ninguna: dilo en #mensaje2 y vacía la lista.
-  //       Si la encuentra, píntala con pintarLista("#salida2", [comoTexto(antigua)])
-  //
-  const antigua = peliculas.find(pelicula => pelicula.anio < 1990);
+  const antigua = peliculas.find((pelicula) => pelicula.anio < 1990);
 
-  if (antigua) {
-    document.querySelector("#mensaje2").textContent = "Primera película anterior a 1990:";
-    pintarLista("#salida2", [comoTexto(antigua)]);
-  } else {
+  if (antigua === undefined) {
     document.querySelector("#mensaje2").textContent = "No hay ninguna anterior a 1990";
     pintarLista("#salida2", []);
+  } else {
+    document.querySelector("#mensaje2").textContent = "Primera película anterior a 1990:";
+    pintarLista("#salida2", [comoTexto(antigua)]);
   }
 
-  console.log("Ejercicio 2: find →", antigua);
+  console.log("Ejercicio 2: find ->", antigua);
 }
 
 
@@ -183,14 +162,14 @@ function buscarAntigua() {
 const numeros = [3, -1, 4, -1, 5, 9];
 document.querySelector("#numeros3").textContent = `const numeros = [${numeros.join(", ")}];`;
 
-// TODO: transformar(lista, operacion) hace a mano lo que hace map, sin usar map:
-//       recorre lista con for…of, llama a operacion con cada elemento, guarda lo que devuelve
-//       en un array nuevo y, al final, devuelve ese array.
 function transformar(lista, operacion) {
-
+  const resultado = [];
+  for (const elemento of lista) {
+    resultado.push(operacion(elemento));
+  }
+  return resultado;
 }
 
-// Ya está hecha: escribe en #salida3 tu resultado, el de map y numeros
 function mostrar3(nombre, resultado, conMap) {
   const salida = document.querySelector("#salida3");
   salida.textContent = "";
@@ -207,20 +186,22 @@ function mostrar3(nombre, resultado, conMap) {
   });
 }
 
-// El modelo: funcionará cuando hayas escrito transformar()
 function verDobles() {
   const resultado = transformar(numeros, (n) => n * 2);
   mostrar3("dobles", resultado, numeros.map((n) => n * 2));
-  console.log("Ejercicio 3: dobles →", resultado);
+  console.log("Ejercicio 3: dobles ->", resultado);
 }
 
 function verCuadrados() {
-  // TODO: como verDobles(), con el cuadrado de cada número (n ** 2).
+  const resultado = transformar(numeros, (n) => n ** 2);
+  mostrar3("cuadrados", resultado, numeros.map((n) => n ** 2));
+  console.log("Ejercicio 3: cuadrados ->", resultado);
 }
 
 function verAbsolutos() {
-  // TODO: como verDobles(), con el valor absoluto (Math.abs). Pista: Math.abs ya es una función,
-  //       así que se puede pasar tal cual, sin paréntesis.
+  const resultado = transformar(numeros, Math.abs);
+  mostrar3("absolutos", resultado, numeros.map(Math.abs));
+  console.log("Ejercicio 3: absolutos ->", resultado);
 }
 
 
