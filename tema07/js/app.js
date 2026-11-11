@@ -209,25 +209,27 @@ function verAbsolutos() {
 // Ejercicio 4 · Dos contadores con closure
 // ============================================================
 
-// TODO: crearContador(paso) guarda una variable cuenta que empieza en 0 y DEVUELVE una función.
-//       Cada vez que se llama a esa función, suma paso a cuenta y devuelve el valor nuevo.
-//       paso vale 1 por defecto.
-function crearContador(paso) {
-
+function crearContador(paso = 1) {
+  let cuenta = 0;
+  return () => {
+    cuenta += paso;
+    return cuenta;
+  };
 }
 
 const contarDeUno = crearContador();
 const contarDeCinco = crearContador(5);
 
-// El modelo
 function sumarUno() {
   const valor = contarDeUno();
   document.querySelector("#cuenta1").textContent = valor;
-  console.log("Ejercicio 4: de 1 en 1 →", valor);
+  console.log("Ejercicio 4: de 1 en 1 ->", valor);
 }
 
 function sumarCinco() {
-  // TODO: lo mismo con contarDeCinco y #cuenta5.
+  const valor = contarDeCinco();
+  document.querySelector("#cuenta5").textContent = valor;
+  console.log("Ejercicio 4: de 5 en 5 ->", valor);
 }
 
 
@@ -242,24 +244,50 @@ class Alumno {
     this.notas = [];
   }
 
-  // TODO: anadirNota(nota): si la nota no es un número (Number.isNaN) o no está entre 0 y 10, devuelve false;
-  //       si es válida, la añade a this.notas y devuelve true.
-  // TODO: media(): 0 si no hay notas; si hay, la suma con reduce (con flecha) entre el número de notas.
-  // TODO: presentarse(): devuelve «Lucía Martín, de 2.º DAW».
-  //       Recuerda: en una clase, los métodos van sin function y sin comas entre ellos.
+  anadirNota(nota) {
+    if (typeof nota !== "number" || Number.isNaN(nota) || nota < 0 || nota > 10) {
+      return false;
+    }
+    this.notas.push(nota);
+    return true;
+  }
+
+  media() {
+    if (this.notas.length === 0) {
+      return 0;
+    }
+    const suma = this.notas.reduce((acumulado, nota) => acumulado + nota, 0);
+    return suma / this.notas.length;
+  }
+
+  presentarse() {
+    return `${this.nombre}, de ${this.curso}`;
+  }
 }
 
 class AlumnoFCT extends Alumno {
-  // TODO: constructor(nombre, curso, empresa): primero super(nombre, curso) y después guarda la empresa.
-  // TODO: presentarse(): la frase de Alumno (super.presentarse()) más «, en prácticas en TecnoSur».
+  constructor(nombre, curso, empresa) {
+    super(nombre, curso);
+    this.empresa = empresa;
+  }
+
+  presentarse() {
+    return `${super.presentarse()}, en prácticas en ${this.empresa}`;
+  }
 }
 
 const alumnos = [];
 
-// TODO: cuando tengas las clases, crea aquí dos alumnos de partida y añádelos a alumnos con push:
-//       un Alumno con dos notas y un AlumnoFCT con otras dos.
+const alumno1 = new Alumno("Lucía Martín", "2.º DAW");
+alumno1.anadirNota(8);
+alumno1.anadirNota(8);
 
-// Ya está hecha: pinta una tarjeta por alumno en #listaAlumnos y actualiza #totalAlumnos
+const alumno2 = new AlumnoFCT("Marcos Ruiz", "2.º DAW", "TecnoSur");
+alumno2.anadirNota(7);
+alumno2.anadirNota(7.5);
+
+alumnos.push(alumno1, alumno2);
+
 function pintarAlumnos() {
   const contenedor = document.querySelector("#listaAlumnos");
   contenedor.textContent = "";
@@ -302,11 +330,55 @@ function pintarAlumnos() {
 }
 
 function crearAlumno() {
-  // TODO: lee #nombre5, #curso5, #empresa5 y #notas5 (value y trim). Si el nombre está vacío, error en #error5.
-  // TODO: si la empresa está vacía, crea un Alumno con new; si no, un AlumnoFCT.
-  // TODO: si hay notas, sepáralas con split(",") y conviértelas con map((texto) => Number(texto.trim())).
-  //       Si alguna no es válida (some), error en #error5 y no sigas. Si todas lo son, añádelas con anadirNota().
-  // TODO: añade el alumno a alumnos, oculta el error, vacía las casillas y llama a pintarAlumnos().
+  const nombre = document.querySelector("#nombre5").value.trim();
+  const curso = document.querySelector("#curso5").value;
+  const empresa = document.querySelector("#empresa5").value.trim();
+  const notasTexto = document.querySelector("#notas5").value.trim();
+  const error5 = document.querySelector("#error5");
+
+  if (nombre === "") {
+    error5.textContent = "El nombre no puede estar vacío.";
+    error5.classList.remove("d-none");
+    return;
+  }
+
+  let listaNotas = [];
+
+  if (notasTexto !== "") {
+    const partes = notasTexto.split(",");
+    const notasNumeros = partes.map((texto) => Number(texto.trim()));
+    const algunaInvalida = partes.some((texto) => texto.trim() === "") || notasNumeros.some((nota) => Number.isNaN(nota) || nota < 0 || nota > 10);
+
+    if (algunaInvalida) {
+      error5.textContent = "Las notas deben ser números entre 0 y 10 separados por comas.";
+      error5.classList.remove("d-none");
+      return;
+    }
+
+    listaNotas = notasNumeros;
+  }
+
+  let nuevoAlumno;
+  if (empresa === "") {
+    nuevoAlumno = new Alumno(nombre, curso);
+  } else {
+    nuevoAlumno = new AlumnoFCT(nombre, curso, empresa);
+  }
+
+  listaNotas.forEach((nota) => {
+    nuevoAlumno.anadirNota(nota);
+  });
+
+  alumnos.push(nuevoAlumno);
+  error5.classList.add("d-none");
+  error5.textContent = "";
+
+  document.querySelector("#nombre5").value = "";
+  document.querySelector("#empresa5").value = "";
+  document.querySelector("#notas5").value = "";
+
+  pintarAlumnos();
+  console.log("Ejercicio 5: Alumno creado", nuevoAlumno);
 }
 
 pintarAlumnos();
