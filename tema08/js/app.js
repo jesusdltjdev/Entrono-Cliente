@@ -83,6 +83,7 @@ function mensajeDe(campo) {
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  comprobarCorreos();
   const campos = e.target.querySelectorAll("input, select, textarea");
   let primerError = null;
 
@@ -110,14 +111,40 @@ form.addEventListener("submit", (e) => {
 // Ejercicio 5 · Eventos de los campos
 // ============================================================
 
-// TODO: el contador de la textarea: con el evento "input" de #comentarios, escribe en #contador
-//       cuántos caracteres lleva (value.length).
+const contador = document.querySelector("#contador");
+const comentarios = document.querySelector("#comentarios");
 
-// TODO: el nivel: con el evento "input" de #nivel, escribe su valor en #valorNivel.
+comentarios.addEventListener("input", () => {
+  contador.textContent = comentarios.value.length;
+});
 
-// TODO: comprobarCorreos(): si #email2 no está vacío y no coincide con #email, ponle un error propio con
-//       setCustomValidity("Los dos correos no coinciden."); si coincide, quítaselo con setCustomValidity("").
-//       Llámala en el evento "input" de los dos correos y también al empezar la validación del submit.
+const nivel = document.querySelector("#nivel");
+const valorNivel = document.querySelector("#valorNivel");
+
+nivel.addEventListener("input", () => {
+  valorNivel.textContent = nivel.value;
+});
+
+const email = document.querySelector("#email");
+const email2 = document.querySelector("#email2");
+
+function comprobarCorreos() {
+  if (email2.value !== "" && email.value !== email2.value) {
+    email2.setCustomValidity("Los dos correos no coinciden.");
+  } else {
+    email2.setCustomValidity("");
+  }
+}
+
+email.addEventListener("input", () => {
+  comprobarCorreos();
+});
+
+email2.addEventListener("input", () => {
+  comprobarCorreos();
+});
+
+
 
 // TODO: que el error desaparezca en cuanto se corrige: a cada campo, un "input" que llame a quitarError()
 //       si campo.checkValidity() ya es true.
