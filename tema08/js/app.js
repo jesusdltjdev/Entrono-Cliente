@@ -146,11 +146,22 @@ email2.addEventListener("input", () => {
 
 
 
-// TODO: que el error desaparezca en cuanto se corrige: a cada campo, un "input" que llame a quitarError()
-//       si campo.checkValidity() ya es true.
+form.querySelectorAll("input, select, textarea").forEach((campo) => {
+  campo.addEventListener("input", () => {
+    if (campo.checkValidity()) {
+      quitarError(campo);
+    }
+  });
+});
 
-// TODO: con el evento "reset" del formulario, quita los errores y vuelve a poner el contador a 0 y el nivel a 5.
 
+form.addEventListener("reset", () => {
+  form.querySelectorAll("input, select, textarea").forEach((campo) => {
+    quitarError(campo);
+  });
+  contador.textContent = "0";
+  valorNivel.textContent = "5";
+});
 
 // ============================================================
 // Ejercicio 6 · Resumen con FormData
