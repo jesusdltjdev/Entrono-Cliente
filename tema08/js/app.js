@@ -47,17 +47,32 @@ function quitarError(campo) {
 
 // El texto de cada campo obligatorio cuando está vacío. La clave es el name (o el id, si no tiene name)
 const OBLIGATORIOS = {
-  nombre: "Escribe tu nombre y apellidos."
-  // TODO: email, email2, nacimiento, modalidad, taller y condiciones
+  nombre: "Escribe tu nombre y apellidos.",
+  email: "Escribe tu email",
+  email2: "Reescribe tu email",
+  nacimiento: "Selecciona tu fecha de nacimiento",
+  modalidad: "Selecciona una modalidad",
+  taller: "Selecciona el taller",
+  condiciones: "Acepta las condiciones"
 };
 
 function mensajeDe(campo) {
-  // TODO: mira campo.validity y devuelve el texto que toque:
-  //       · valueMissing → OBLIGATORIOS[campo.name || campo.id]
-  //       · typeMismatch → el de un correo mal escrito
-  //       · tooShort → «Escribe al menos N caracteres.» (campo.minLength)
-  //       · patternMismatch, rangeUnderflow o rangeOverflow → campo.title
-  //       · customError → campo.validationMessage (el de setCustomValidity)
+  const validez = campo.validity;
+  let mensaje = "";
+
+  if (validez.valueMissing) {
+    mensaje = OBLIGATORIOS[campo.name || campo.id];
+  } else if (validez.typeMismatch) {
+    mensaje = "Escribe un correo electrónico válido.";
+  } else if (validez.tooShort) {
+    mensaje = `Escribe al menos ${campo.minLength} caracteres.`;
+  } else if (validez.patternMismatch || validez.rangeUnderflow || validez.rangeOverflow) {
+    mensaje = campo.title;
+  } else if (validez.customError) {
+    mensaje = campo.validationMessage;
+  }
+
+  return mensaje;
 }
 
 
@@ -67,12 +82,27 @@ function mensajeDe(campo) {
 // ============================================================
 
 form.addEventListener("submit", (e) => {
-  // TODO 1: e.preventDefault(), para que no se envíe todavía.
-  // TODO 2: coge todos los campos: e.target.querySelectorAll("input, select, textarea").
-  // TODO 3: recórrelos con forEach. Si campo.checkValidity() es true, quitarError(campo);
-  //         si no, mostrarError(campo, mensajeDe(campo)) y apúntate el primero que falla.
-  // TODO 4: si alguno ha fallado, pon el foco en el primero (focus()) y no sigas (return).
-  // TODO 5: si todo está bien, envíalo de verdad: e.target.submit().
+  e.preventDefault();
+  const campos = e.target.querySelectorAll("input, select, textarea");
+  let primerError = null;
+
+  campos.forEach((campo) => {
+    if (campo.checkValidity()) {
+      quitarError(campo);
+    } else {
+      mostrarError(campo, mensajeDe(campo));
+      if (!primerError) {
+        primerError = campo;
+      }
+    }
+  });
+
+  if (primerError) {
+    primerError.focus();
+    return;
+  }
+
+  e.target.submit();
 });
 
 
