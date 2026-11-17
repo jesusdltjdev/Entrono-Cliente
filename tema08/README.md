@@ -19,19 +19,19 @@
 
 <img src="capturas/a-pagina.png" alt="El formulario vacío con mi nombre en la navbar" width="600">
 
-[Tu nombre y el formulario completo, con sus dos fieldset.]
+En la captura vemos el nombre y el formulario completo con dos fieldsets.
 
 ### b) Ejercicio 2: el mensaje del navegador
 
 <img src="capturas/b-ej2-navegador.png" alt="El mensaje del navegador sobre un campo" width="600">
 
-[Qué campo falla y qué dice el navegador. Qué pasó al quitar un required desde F12 y por qué hay que validar también en el servidor.]
+El campo que falla es el primero de Nombre y apellidos al ser obligatorio y no estar relleno. Cuando quitamos la propiedad required desde la consola de desarrollador, los datos se envian aun estando vacios. Es por ello que tenemos que siempre validar los datos del servidor ya que las restricciones puestas en el front-end son sujetas a modificaciones por el usuario.
 
 ### c) Ejercicio 3: lo que llega por GET
 
 <img src="capturas/c-ej3-recibido.png" alt="recibido.html con los datos en la URL y en una tabla" width="600">
-
-[Con la barra de direcciones a la vista. Qué viaja en la URL, qué campo no llega y por qué nunca mandarías una contraseña por GET.]
+ 
+Al hacer un GET, se mandan todos los datos del formulario por la URL, a excepción del campo de repetir el correo que lo eliminamos antes de enviarlo. Nunca enviaríamos una contraseña porque sería visible en la barra de direcciones y estaria expuesta a ataques.
 
 ### d) Ejercicio 4: los errores, junto a cada campo
 
@@ -46,13 +46,11 @@
 [El contador y el nivel después de escribir, el error de los correos y el resumen de FormData.]
 
 ## Reflexión
+ 
+Al validar los datos desde JavaScript y no solo con el navegador podemos comprobar antes de enviar al servidor fallos complejos propios del tipo de campo como contraseñas con complejidad y facilitar al usuario introducir datos correctos. Aun así, las verificaciones hechas antes del envio al back-end son para ayudar al usuario y no sirven como comprobación ya que estas puedes ser sujetas a ser editadas por el usuario, insertando datos no validos. 
 
-[De 5 a 8 líneas: ¿qué ganas validando con JavaScript en vez de dejarlo al navegador? ¿Por qué ni una ni otra bastan sin validar también en el servidor? ¿Qué pasa con `this` si el manejador del submit es una flecha?]
-
-## Fuentes
-
-- [Título de la página](https://enlace-a-la-fuente)
+Si intentamos usar `this` en el manejador del submit usando una función flecha, nos da un fallo. Este tipo de función no puede llamar sus atributos con `this`, hay que utilizar otros metodos de (e) en este caso.
 
 ## Uso de IA
 
-[Si has usado IA: qué herramienta, para qué y qué hiciste después con su respuesta. Si no la has usado, borra este apartado.]
+Se ha hecho uso de Gemini 3.8 para la elaboración del README, comprobación de posibles errores en el código y como ayuda externa para la realización.

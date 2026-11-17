@@ -9,23 +9,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Iconos de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-  <!-- Tu JavaScript. Con defer, espera a que se lea todo el HTML antes de ejecutarse: no lo quites -->
+  <!-- JavaScript propio (defer: se ejecuta cuando el HTML ya está leído) -->
   <script src="js/app.js" defer></script>
 </head>
 <body>
-
-  <!--
-    PLANTILLA DE LA TAREA 8
-    · Esta vez el formulario lo maquetas tú: aquí solo tienes el primer campo, «nombre», como modelo.
-    · Todos los campos siguen el mismo esquema:
-        <div class="mb-3">                                  ← un div por campo
-          <label for="ID" class="form-label">…</label>      ← for = el id del campo
-          <input … id="ID" name="NOMBRE" class="form-control">
-          <div class="invalid-feedback"></div>              ← aquí escribirá app.js el error
-        </div>
-    · Los id que usa el JavaScript están en el enunciado: respétalos.
-    · Todo lo que va entre [corchetes] es un hueco: sustitúyelo por lo tuyo.
-  -->
 
   <!-- NAVBAR con tu nombre -->
   <nav class="navbar bg-primary" data-bs-theme="dark">
@@ -55,7 +42,6 @@
               <fieldset class="mb-4">
                 <legend class="fs-5 border-bottom pb-1">Tus datos</legend>
 
-                <!-- EL MODELO: un campo completo, con sus atributos de validación (ejercicio 2) -->
                 <div class="mb-3">
                   <label for="nombre" class="form-label">Nombre y apellidos *</label>
                   <input type="text" id="nombre" name="nombre" class="form-control" autocomplete="name"

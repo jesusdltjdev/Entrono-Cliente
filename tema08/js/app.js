@@ -1,15 +1,6 @@
-/*
+﻿/*
   Tarea 8 · DWEC · Jesús Enrique de la Torre Jiménez
-  Formulario de inscripción.
-
-  Cómo usar esta plantilla:
-  · Escribe tu código donde pone TODO y, cuando termines, borra el TODO.
-  · Los ejercicios 1 a 3 son HTML: el formulario se valida y se envía solo, sin JavaScript.
-  · Desde el ejercicio 4, la validación la haces tú: añade novalidate al <form>.
-  · Los errores se escriben debajo de cada campo con mostrarError(); nada de alert().
-  · Como en el tema 7: flechas en los callbacks. Dentro de ellos, this NO es el formulario:
-    usa e.target o la constante form.
-  · let y const, nunca var. Compara siempre con ===. Comillas rectas.
+  Formulario de inscripción: validación con JavaScript, eventos de los campos y resumen con FormData.
 */
 
 console.log("app.js cargado");
@@ -22,7 +13,6 @@ const form = document.querySelector("#inscripcion");
 // Cada campo está en un <div class="mb-3"> con su <div class="invalid-feedback">
 // ============================================================
 
-// Ya está hecha: es el modelo
 function mostrarError(campo, mensaje) {
   campo.classList.add("is-invalid");                         // borde rojo de Bootstrap
   const aviso = campo.closest(".mb-3").querySelector(".invalid-feedback");
@@ -71,18 +61,17 @@ function mensajeDe(campo) {
   } else if (validez.customError) {
     mensaje = campo.validationMessage;
   }
-
   return mensaje;
 }
 
 
 // ============================================================
 // Ejercicio 4 · La validación al enviar
-// Hasta que llegues a este ejercicio, deja la función vacía: el formulario se enviará solo
 // ============================================================
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  console.log("Submit: empiezo a validar");
   comprobarCorreos();
   const campos = e.target.querySelectorAll("input, select, textarea");
   let primerError = null;
@@ -99,10 +88,12 @@ form.addEventListener("submit", (e) => {
   });
 
   if (primerError) {
+    console.log(`Hay errores. El primero está en: ${primerError.id}`);
     primerError.focus();
     return;
   }
 
+  console.log("Todo correcto: envío el formulario por GET");
   e.target.submit();
 });
 
@@ -131,6 +122,7 @@ const email2 = document.querySelector("#email2");
 function comprobarCorreos() {
   if (email2.value !== "" && email.value !== email2.value) {
     email2.setCustomValidity("Los dos correos no coinciden.");
+    console.log("Los correos no coinciden");
   } else {
     email2.setCustomValidity("");
   }
@@ -138,13 +130,15 @@ function comprobarCorreos() {
 
 email.addEventListener("input", () => {
   comprobarCorreos();
+  // Al corregir el primer correo, el error de "Repite el correo" debe desaparecer si ya coinciden
+  if (email2.checkValidity()) {
+    quitarError(email2);
+  }
 });
 
 email2.addEventListener("input", () => {
   comprobarCorreos();
 });
-
-
 
 form.querySelectorAll("input, select, textarea").forEach((campo) => {
   campo.addEventListener("input", () => {
@@ -156,6 +150,8 @@ form.querySelectorAll("input, select, textarea").forEach((campo) => {
 
 
 form.addEventListener("reset", () => {
+  console.log("Reset: quito errores y vuelvo a poner contador y nivel");
+  email2.setCustomValidity("");
   form.querySelectorAll("input, select, textarea").forEach((campo) => {
     quitarError(campo);
   });
@@ -167,8 +163,25 @@ form.addEventListener("reset", () => {
 // Ejercicio 6 · Resumen con FormData
 // ============================================================
 
-// TODO: con el evento "click" de #verResumen:
-//       · const datos = new FormData(form);
-//       · recórrelo con for (const [campo, valor] of datos) y pinta un <li class="list-group-item"> por par
-//         en #resumen (createElement y textContent; si el valor está vacío, «(vacío)»);
-//       · escribe en #avisoResumen cuántos datos hay y por qué falta «Repite el correo».
+const verResumen = document.querySelector("#verResumen");
+const avisoResumen = document.querySelector("#avisoResumen");
+const resumen = document.querySelector("#resumen");
+
+verResumen.addEventListener("click", () => {
+  const datos = new FormData(form);
+  let total = 0;
+
+  // Vaciamos la lista para no duplicar datos en cada click
+  resumen.replaceChildren();
+
+  for (const [campo, valor] of datos) {
+    const li = document.createElement("li");
+    li.classList.add("list-group-item");
+    li.textContent = `${campo}: ${valor === "" ? "(vacío)" : valor}`;
+    resumen.appendChild(li);
+    total++;
+  }
+
+  console.log(`Resumen: ${total} datos`);
+  avisoResumen.textContent = `Hay ${total} datos. «Repite el correo» no aparece porque su campo no tiene name.`;
+});

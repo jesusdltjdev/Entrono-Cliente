@@ -10,9 +10,7 @@ console.log("recibido.js cargado");
 console.log("Ha llegado:", location.search);
 
 // URLSearchParams la separa en pares nombre → valor y decodifica las tildes y los espacios.
-// El modelo: un dato suelto, por su name
 const parametros = new URLSearchParams(location.search);
-console.log("nombre =", parametros.get("nombre"));
 
 const consulta = document.querySelector("#consulta"); 
 const datos = document.querySelector("#datos"); 
