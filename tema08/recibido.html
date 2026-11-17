@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inscripción recibida · Jesús Enrique de la Torre Jiménez</title>
+
+  <!-- CSS de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos de Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- El JavaScript de esta página: lee lo que llega en la URL -->
+  <script src="js/recibido.js" defer></script>
+</head>
+<body>
+
+  <nav class="navbar bg-primary" data-bs-theme="dark">
+    <div class="container">
+      <span class="navbar-brand"><i class="bi bi-person-circle"></i> Jesús Enrique de la Torre Jiménez</span>
+      <span class="navbar-text">Tarea 8 · DWEC</span>
+    </div>
+  </nav>
+
+  <header class="bg-body-tertiary border-bottom py-4 mb-4">
+    <div class="container">
+      <h1 class="h2 mb-1">Inscripción recibida</h1>
+      <p class="lead mb-0 text-body-secondary">Esto es lo que ha llegado por GET, en la URL.</p>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <section class="card shadow-sm">
+      <div class="card-body">
+        <p id="consulta" class="font-monospace small text-body-secondary mb-3"></p>
+
+        <div class="table-responsive mb-3">
+          <table class="table table-striped table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th scope="col">Campo (name)</th>
+                <th scope="col">Valor</th>
+              </tr>
+            </thead>
+            <tbody id="datos"></tbody>
+          </table>
+        </div>
+
+        <a href="index.html" class="btn btn-outline-primary">
+          <i class="bi bi-arrow-left"></i> Volver al formulario
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-body-tertiary border-top py-3">
+    <div class="container small text-body-secondary">Jesús Enrique de la Torre Jiménez · DWEC 26/27 · Tarea 8</div>
+  </footer>
+</body>
+</html>
